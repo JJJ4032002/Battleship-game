@@ -1,0 +1,30 @@
+{
+  "name": "battleship-game",
+  "version": "1.0.0",
+  "description": "A Battle-ship game made with html,css and js with main focus on test-driven-development",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JJJ4032002/Battleship-game.git"
+  },
+  "keywords": [
+    "battleship"
+  ],
+  "author": "JJJ4032002",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JJJ4032002/Battleship-game/issues"
+  },
+  "homepage": "https://github.com/JJJ4032002/Battleship-game#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.15.0",
+    "jest": "^27.0.6",
+    "webpack": "^5.48.0",
+    "webpack-cli": "^4.7.2"
+  }
+}
