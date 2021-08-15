@@ -1,4 +1,5 @@
-import { shipFake } from "./shipFactory";
+import { ship } from "./shipFactory";
+let shipFake = ship(5);
 
 test("Hit function test", () => {
   expect(shipFake.hit(3)).toBe("The ship has been hit");
@@ -18,6 +19,14 @@ test("Hit function test", () => {
 
 test("Hit function test", () => {
   expect(shipFake.hit(1)).toBe("The ship has been hit");
+});
+
+test("Hit function test", () => {
+  expect(shipFake.hit(4)).toBe("The ship has been hit");
+});
+
+test("Hit function test", () => {
+  expect(shipFake.hit(5)).toBe("The ship has been hit");
 });
 
 test("Check if ship has been sunk", () => {
