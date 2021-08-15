@@ -19,14 +19,14 @@ const methodsObj = {
 };
 
 function ship(length) {
+  let ShipLength = length;
   let arr = [];
   let ShipObj = Object.assign(Object.create(methodsObj), {
     length,
+    ShipLength,
     arr,
   });
   return ShipObj;
 }
 
-const shipFake = ship(3);
-
-export { shipFake };
+export { ship };
