@@ -2,6 +2,8 @@
  * @jest-environment jsdom
  */
 import { newGameBoard } from "./gameBoardFactory";
+let newGameBoard = gameBoard(20);
+
 newGameBoard.placeShip(3, 3);
 newGameBoard.placeShip(4, 11);
 let bla;
