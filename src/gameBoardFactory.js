@@ -3,9 +3,9 @@ import PlaceAtPosition from "./PlaceAtPosition";
 import { ship } from "./shipFactory";
 
 const methodObj = {
-  placeShip: function (ShipLength, position) {
+  placeShip: function (ShipLength, position, BoardId) {
     this.NoOfShips++;
-    let ChildNodes = document.querySelector("#container").children;
+    let ChildNodes = document.querySelector(`#${BoardId}`).children;
     ChildNodes = [...ChildNodes];
     let newShip = ship(ShipLength);
     this.shipsArr.push(newShip);
@@ -48,12 +48,12 @@ const methodObj = {
   },
 };
 
-function gameBoard(length) {
+function gameBoard(length, Board) {
   let shipsArr = [];
   let CoordinatesArr = [];
   let NoOfShips = 0;
   let ShipsSunkArr = [];
-  CreateGrid(length);
+  CreateGrid(length, Board);
   let gameBoardObj = Object.assign(Object.create(methodObj), {
     shipsArr,
     CoordinatesArr,
@@ -63,6 +63,4 @@ function gameBoard(length) {
   return gameBoardObj;
 }
 
-let newGameBoard = gameBoard(20);
-
-export { gameBoard, newGameBoard };
+export { gameBoard };
