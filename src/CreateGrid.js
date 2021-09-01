@@ -9,9 +9,14 @@ function CreateGrid(params, Board) {
   const Container = document.createElement("div");
   Container.setAttribute("class", "container");
   Container.setAttribute("id", `${Board}`);
+  Container.style.display = "grid";
+  Container.style.gridTemplateColumns = "repeat(10,1fr)";
+  Container.style.gridTemplateRows = "repeat(10,1fr)";
+  Container.style.width = "100%";
   gameDiv.appendChild(Container);
   for (let i = 0; i < params; i++) {
     const IndDiv = document.createElement("div");
+    IndDiv.style.border = "2px solid black";
     IndDiv.classList.add("box-items");
     IndDiv.setAttribute("id", i);
     Container.appendChild(IndDiv);
