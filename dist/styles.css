@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navContainer {
+  padding: 1em;
+  background: #40916c;
+  color: White;
+  text-align: center;
+}
+.navContainer h1 {
+  font-size: 2.5rem;
+}
+#gameContainer {
+  margin: 2.5em 0;
+  text-align: center;
+}
+
+label {
+  font-size: 1.5rem;
+}
+input {
+  border: 2px solid transparent;
+  border-bottom: 3px solid black;
+  width: 50%;
+  margin: 0.7em 0;
+  text-align: center;
+  font-size: 1.2rem;
+  padding-bottom: 0.1em;
+}
+input:focus {
+  outline: none;
+}
+
+.submitButton {
+  margin: 0.5em 0;
+  font-size: 1.2rem;
+  padding: 0.4em 1em;
+  background-color: transparent;
+  border: 0.2em solid #40916c;
+  color: #40916c;
+  border-radius: 0.4em;
+  cursor: pointer;
+  transition: border 300ms ease, background-color 300ms ease, color 300ms ease;
+}
+.submitButton:hover {
+  background-color: #40916c;
+  border: 0.2em solid #40916c;
+  color: white;
+}
+
+@media (min-width: 600px) {
+  .navContainer h1 {
+    font-size: 3rem;
+  }
+  label {
+    font-size: 1.8rem;
+  }
+  input {
+    width: 40%;
+  }
+}
