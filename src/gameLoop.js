@@ -34,7 +34,7 @@ let gameLoop = (function () {
     <br>
      <input type="text" id="name" value="">
      <br>
-     <button class="submitButton">Play</button>
+     <button class="submitButton">PLAY</button>
     `;
     mainDiv.appendChild(GameDiv);
     ClickButton = document.querySelector(".submitButton");
