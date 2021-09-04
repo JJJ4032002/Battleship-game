@@ -3,6 +3,7 @@ import { gameBoard } from "./gameBoardFactory";
 let gameLoop = (function () {
   let mainDiv = document.querySelector(".OuterContainer");
   let ClickButton = null;
+  let boards;
 
   function hasClass(elem, className) {
     return elem.classList.contains(className);
@@ -14,7 +15,11 @@ let gameLoop = (function () {
       if (hasClass(e.target, "submitButton")) {
         let subButton = document.querySelector(".submitButton");
         console.log(subButton);
-        submitAndStart();
+        boards = submitAndStart();
+      }
+      if (e.target.parentNode?.id === "Board2") {
+        console.log("Second Board clicked");
+        console.log(boards);
       }
     },
     false
@@ -48,7 +53,9 @@ let gameLoop = (function () {
     } else {
       let gameDiv = document.querySelector("#gameContainer");
       gameDiv.innerHTML = "";
-      startMainGame();
+      let returnBoards = startMainGame();
+      console.log(returnBoards);
+      return returnBoards;
     }
   }
 
@@ -77,6 +84,7 @@ let gameLoop = (function () {
       ],
       "Board2"
     );
+    return { newBoard1, newBoard2 };
   }
 
   function PlaceAllShips(Board, shipsArr, BoardId) {
