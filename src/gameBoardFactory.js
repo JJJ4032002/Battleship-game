@@ -17,6 +17,9 @@ const methodObj = {
   },
   receiveAttack: function (position, shipLength) {
     let index = this.CoordinatesArr.indexOf(position);
+    if (index != -1) {
+      return "The ship has already been hit";
+    }
     if (shipLength === undefined) {
       this.CoordinatesArr.push(position);
       return "Enemy Missed the attack";
@@ -35,8 +38,6 @@ const methodObj = {
       }
 
       return "The ship has been hit and Coordinates have been noted";
-    } else {
-      return "You have attacked this position";
     }
   },
   AllShipsSunk: function () {
@@ -53,7 +54,9 @@ function gameBoard(length, Board) {
   let CoordinatesArr = [];
   let NoOfShips = 0;
   let ShipsSunkArr = [];
+
   CreateGrid(length, Board);
+
   let gameBoardObj = Object.assign(Object.create(methodObj), {
     shipsArr,
     CoordinatesArr,
