@@ -1,5 +1,7 @@
 import gameLoop from "./gameLoop";
+import CreateNav from "./components/createNav";
+import StartGame from "./components/startGame";
 
-gameLoop.CreateNav();
+CreateNav();
 
-gameLoop.StartGame();
+StartGame();
