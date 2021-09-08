@@ -1,5 +1,6 @@
 import submitAndStart from "./components/submitAndStart";
-
+import checkWhoWon from "./components/checkWhoWon";
+import CheckUnique from "./components/checkUnique";
 let gameLoop = (function () {
   let boards;
 
@@ -17,7 +18,13 @@ let gameLoop = (function () {
       }
       if (e.target.parentNode?.id === "Board2") {
         console.log("Second Board clicked");
-        console.log(boards);
+        let index = Math.floor(100 * Math.random());
+        index = CheckUnique(index);
+        console.log(index);
+        let boxClicked = e.target.id;
+        let dataShip = e.target.getAttribute("data-ship");
+
+        checkWhoWon(boards);
       }
     },
     false
