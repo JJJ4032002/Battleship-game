@@ -58,9 +58,10 @@ input:focus {
 
 .container {
   margin-top: 2em;
+  border: 0.3em solid #40916c;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 900px) {
   .navContainer h1 {
     font-size: 3rem;
   }
