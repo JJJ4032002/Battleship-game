@@ -16,7 +16,7 @@ function CreateGrid(params, Board) {
   gameDiv.appendChild(Container);
   for (let i = 0; i < params; i++) {
     const IndDiv = document.createElement("div");
-    IndDiv.style.border = "2px solid black";
+    IndDiv.style.border = "2px solid #40916c";
     IndDiv.classList.add("box-items");
     IndDiv.setAttribute("id", i);
     Container.appendChild(IndDiv);
