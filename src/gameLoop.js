@@ -18,13 +18,17 @@ let gameLoop = (function () {
       }
       if (e.target.parentNode?.id === "Board2") {
         console.log("Second Board clicked");
-        let index = Math.floor(100 * Math.random());
-        index = CheckUnique(index);
-        console.log(index);
-        let boxClicked = e.target.id;
-        let dataShip = e.target.getAttribute("data-ship");
+        let position1 = Math.floor(100 * Math.random());
+        position1 = CheckUnique(position1);
 
-        checkWhoWon(boards);
+        var element1 = document.querySelector(
+          `div[data-box=Board1${position1}]`
+        );
+        let dataShip1 = element1.getAttribute("data-ship");
+        let position2 = e.target.id;
+        let dataShip2 = e.target.getAttribute("data-ship");
+
+        checkWhoWon(boards, position1, dataShip1, position2, dataShip2);
       }
     },
     false
