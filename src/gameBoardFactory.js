@@ -19,14 +19,10 @@ const methodObj = {
     let index = this.CoordinatesArr.indexOf(position);
     if (index != -1) {
       return "The ship has already been hit";
-    }
-    if (shipLength === undefined) {
-      this.CoordinatesArr.push(position);
-      return "Enemy Missed the attack";
-    } else if (index === -1) {
+    } else if (index === -1 && shipLength != null) {
       this.CoordinatesArr.push(position);
       function FindShip(params) {
-        return shipLength === params.ShipLength;
+        return Number(shipLength) === params.ShipLength;
       }
       let ShipIndex = this.shipsArr.findIndex(FindShip);
       let thatShip = this.shipsArr[ShipIndex];
@@ -38,6 +34,8 @@ const methodObj = {
       }
 
       return "The ship has been hit and Coordinates have been noted";
+    } else {
+      this.CoordinatesArr.push(position);
     }
   },
   AllShipsSunk: function () {
