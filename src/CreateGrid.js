@@ -18,6 +18,7 @@ function CreateGrid(params, Board) {
     const IndDiv = document.createElement("div");
     IndDiv.style.border = "2px solid #40916c";
     IndDiv.classList.add("box-items");
+    IndDiv.setAttribute("data-box", `${Board}${i}`);
     IndDiv.setAttribute("id", i);
     Container.appendChild(IndDiv);
   }
