@@ -36,6 +36,7 @@ const methodObj = {
       return "The ship has been hit and Coordinates have been noted";
     } else {
       this.CoordinatesArr.push(position);
+      return "Opps missed the ship";
     }
   },
   AllShipsSunk: function () {
