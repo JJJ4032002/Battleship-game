@@ -28,7 +28,14 @@ let gameLoop = (function () {
         let position2 = e.target.id;
         let dataShip2 = e.target.getAttribute("data-ship");
 
-        checkWhoWon(boards, position1, dataShip1, position2, dataShip2);
+        let whoWon = checkWhoWon(
+          boards,
+          position1,
+          dataShip1,
+          position2,
+          dataShip2
+        );
+        console.log(whoWon);
       }
     },
     false
