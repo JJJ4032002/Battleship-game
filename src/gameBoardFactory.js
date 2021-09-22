@@ -13,6 +13,7 @@ const methodObj = {
       ShipLength,
       position,
       ShipCount: 0,
+      BoardId,
     });
   },
   receiveAttack: function (position, shipLength) {
