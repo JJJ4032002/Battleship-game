@@ -1,12 +1,14 @@
 import submitAndStart from "./components/submitAndStart";
 import checkWhoWon from "./components/checkWhoWon";
 import CheckUnique from "./components/checkUnique";
+import ColorChange from "./components/ChangeColorBoard";
 let gameLoop = (function () {
   let boards;
 
   function hasClass(elem, className) {
     return elem.classList.contains(className);
   }
+
   //Dom Interaction
   document.addEventListener(
     "click",
@@ -21,13 +23,14 @@ let gameLoop = (function () {
         let position1 = Math.floor(100 * Math.random());
         position1 = CheckUnique(position1);
 
-        var element1 = document.querySelector(
+        let element2 = e.target;
+        let element1 = document.querySelector(
           `div[data-box=Board1${position1}]`
         );
         let dataShip1 = element1.getAttribute("data-ship");
-        let position2 = e.target.id;
-        let dataShip2 = e.target.getAttribute("data-ship");
-
+        let position2 = element2.id;
+        let dataShip2 = element2.getAttribute("data-ship");
+        ColorChange(dataShip1, dataShip2, element1, element2);
         let whoWon = checkWhoWon(
           boards,
           position1,
