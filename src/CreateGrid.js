@@ -11,7 +11,7 @@ function CreateGrid(params, Board) {
   Container.setAttribute("id", `${Board}`);
   Container.style.display = "grid";
   Container.style.gridTemplateColumns = "repeat(10,1fr)";
-  Container.style.gridTemplateRows = "repeat(10,minmax(25px,1fr)";
+  Container.style.gridTemplateRows = "repeat(10,minmax(35px,1fr)";
   Container.style.width = "100%";
   gameDiv.appendChild(Container);
   for (let i = 0; i < params; i++) {
