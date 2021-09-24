@@ -1,4 +1,5 @@
 import startMainGame from "./startMainGame";
+import PlaceShipsOnBoard from "./PlaceShipsOnBoard";
 
 function submitAndStart() {
   let Input = document.querySelector("#name");
@@ -8,9 +9,9 @@ function submitAndStart() {
   } else {
     let gameDiv = document.querySelector("#gameContainer");
     gameDiv.innerHTML = "";
-    let returnBoards = startMainGame();
-    console.log(returnBoards);
-    return returnBoards;
+    let returnBoard = PlaceShipsOnBoard();
+
+    return returnBoard;
   }
 }
 export default submitAndStart;
