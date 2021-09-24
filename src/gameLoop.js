@@ -2,12 +2,27 @@ import submitAndStart from "./components/submitAndStart";
 import checkWhoWon from "./components/checkWhoWon";
 import CheckUnique from "./components/checkUnique";
 import ColorChange from "./components/ChangeColorBoard";
+import ChangeColorBlocks from "./components/ChangeColorBlocks";
 let gameLoop = (function () {
   let boards;
+  let dummyBoard;
+  let ShipCount = 2;
+  let HoveredArr = [];
 
   function hasClass(elem, className) {
     return elem.classList.contains(className);
   }
+
+  // Listening to mouseover events
+  document.addEventListener("mouseover", function (e) {
+    if (e.target.parentNode?.id === "DummyBoard") {
+      HoveredArr.forEach((e) => {
+        e.style["background-color"] = "white";
+      });
+      let element = e.target;
+      ChangeColorBlocks(e.target, ShipCount, HoveredArr);
+    }
+  });
 
   //Dom Interaction
   document.addEventListener(
@@ -16,8 +31,10 @@ let gameLoop = (function () {
       if (hasClass(e.target, "submitButton")) {
         let subButton = document.querySelector(".submitButton");
         console.log(subButton);
-        boards = submitAndStart();
+        dummyBoard = submitAndStart();
+        console.log(dummyBoard);
       }
+
       if (e.target.parentNode?.id === "Board2") {
         console.log("Second Board clicked");
         let position1 = Math.floor(100 * Math.random());
