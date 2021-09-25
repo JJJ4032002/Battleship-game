@@ -6,7 +6,7 @@ import ChangeColorBlocks from "./components/ChangeColorBlocks";
 let gameLoop = (function () {
   let boards;
   let dummyBoard;
-  let ShipCount = 2;
+  let ShipCount = 5;
   let HoveredArr = [];
 
   function hasClass(elem, className) {
@@ -19,7 +19,7 @@ let gameLoop = (function () {
       HoveredArr.forEach((e) => {
         e.style["background-color"] = "white";
       });
-      let element = e.target;
+
       ChangeColorBlocks(e.target, ShipCount, HoveredArr);
     }
   });
@@ -33,6 +33,10 @@ let gameLoop = (function () {
         console.log(subButton);
         dummyBoard = submitAndStart();
         console.log(dummyBoard);
+      }
+      if (e.target.parentNode?.id === "DummyBoard") {
+        let boxId = e.target.id;
+        // validPlacementShip(boxId, i);
       }
 
       if (e.target.parentNode?.id === "Board2") {
