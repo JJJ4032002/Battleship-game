@@ -34,6 +34,14 @@ input:focus {
   outline: none;
 }
 
+.BtnCont {
+  text-align: center;
+}
+
+#axisBtn {
+  padding: 0.5em 0.5em;
+}
+
 .submitButton {
   margin: 0.5em 0;
   font-size: 1.2rem;
