@@ -8,6 +8,7 @@ let gameLoop = (function () {
   let dummyBoard;
   let ShipCount = 5;
   let HoveredArr = [];
+  let btnCheck = true;
 
   function hasClass(elem, className) {
     return elem.classList.contains(className);
@@ -20,7 +21,7 @@ let gameLoop = (function () {
         e.style["background-color"] = "white";
       });
 
-      ChangeColorBlocks(e.target, ShipCount, HoveredArr);
+      ChangeColorBlocks(e.target, ShipCount, HoveredArr, btnCheck);
     }
   });
 
@@ -37,6 +38,15 @@ let gameLoop = (function () {
       if (e.target.parentNode?.id === "DummyBoard") {
         let boxId = e.target.id;
         // validPlacementShip(boxId, i);
+      }
+      if (e.target?.id === "axisBtn") {
+        if (btnCheck) {
+          e.target.textContent = "Y-AXIS";
+          btnCheck = false;
+        } else {
+          e.target.textContent = "X-AXIS";
+          btnCheck = true;
+        }
       }
 
       if (e.target.parentNode?.id === "Board2") {
