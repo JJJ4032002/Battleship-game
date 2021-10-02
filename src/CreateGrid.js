@@ -19,6 +19,7 @@ function CreateGrid(params, Board) {
     IndDiv.style.border = "2px solid #40916c";
     IndDiv.classList.add("box-items");
     IndDiv.setAttribute("data-box", `${Board}${i}`);
+    IndDiv.setAttribute("data-box-number", i);
     IndDiv.setAttribute("id", i);
     if (Board === "Board2") {
       IndDiv.style["cursor"] = "pointer";
