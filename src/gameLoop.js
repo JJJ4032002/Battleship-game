@@ -8,6 +8,7 @@ let gameLoop = (function () {
   let dummyBoard;
   let ShipCount = 5;
   let HoveredArr = [];
+  let arrToAvoid = [];
   let btnCheck = true;
 
   function hasClass(elem, className) {
@@ -20,6 +21,12 @@ let gameLoop = (function () {
       HoveredArr.forEach((e) => {
         e.style["background-color"] = "white";
       });
+      // Emptied the array to add only those elements that were hovered green.
+
+      arrToAvoid.forEach((e) => {
+        e.style["background-color"] = "#6eeb5e";
+      });
+      HoveredArr = [];
 
       ChangeColorBlocks(e.target, ShipCount, HoveredArr, btnCheck);
     }
@@ -37,6 +44,8 @@ let gameLoop = (function () {
       }
       if (e.target.parentNode?.id === "DummyBoard") {
         let boxId = e.target.id;
+        arrToAvoid = [...arrToAvoid, ...HoveredArr];
+        console.log(arrToAvoid);
         // validPlacementShip(boxId, i);
       }
       if (e.target?.id === "axisBtn") {
