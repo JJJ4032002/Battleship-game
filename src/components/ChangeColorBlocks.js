@@ -48,26 +48,26 @@ function ChangeColorBlocks(e, shipCount, arr, btn) {
 function ChangeNum(num, btn) {
   let numToStr = num.toString();
 
-  let arr = [...numToStr];
+  let arrChangeNum = [...numToStr];
   if (btn) {
     if (num <= 9) {
-      arr[0] = "9";
+      arrChangeNum[0] = "9";
     } else {
-      arr[1] = "9";
+      arrChangeNum[1] = "9";
     }
   } else {
     if (num <= 9) {
-      let temp = arr[0];
-      arr[0] = "9";
-      arr[1] = temp;
+      let temp = arrChangeNum[0];
+      arrChangeNum[0] = "9";
+      arrChangeNum[1] = temp;
     } else {
-      arr[0] = "9";
+      arrChangeNum[0] = "9";
     }
   }
 
   num = "";
 
-  arr.forEach((e) => {
+  arrChangeNum.forEach((e) => {
     num += e;
   });
   return Number(num);
