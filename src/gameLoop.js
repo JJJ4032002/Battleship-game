@@ -2,11 +2,14 @@ import submitAndStart from "./components/submitAndStart";
 import checkWhoWon from "./components/checkWhoWon";
 import CheckUnique from "./components/checkUnique";
 import ColorChange from "./components/ChangeColorBoard";
-import ChangeColorBlocks from "./components/ChangeColorBlocks";
+import PreviewShipsOnHover from "./components/PreviewShipsOnHover";
+import changeArrBackgroundColor from "./components/changeArrBackgroundColor";
+import Colors from "./components/Colors";
+import validPlacementShip from "./components/validPlacementShip";
 let gameLoop = (function () {
   let boards;
   let dummyBoard;
-  let ShipCount = 5;
+  let ShipCount = 1;
   let HoveredArr = [];
   let arrToAvoid = [];
   let btnCheck = true;
@@ -18,17 +21,13 @@ let gameLoop = (function () {
   // Listening to mouseover events
   document.addEventListener("mouseover", function (e) {
     if (e.target.parentNode?.id === "DummyBoard") {
-      HoveredArr.forEach((e) => {
-        e.style["background-color"] = "white";
-      });
-      // Emptied the array to add only those elements that were hovered green.
+      changeArrBackgroundColor(HoveredArr, Colors.white);
 
-      arrToAvoid.forEach((e) => {
-        e.style["background-color"] = "#6eeb5e";
-      });
+      changeArrBackgroundColor(arrToAvoid, Colors.green);
+      // Emptied the array to add only those elements in "arrToAvoid" that had Back-color green.
       HoveredArr = [];
 
-      ChangeColorBlocks(e.target, ShipCount, HoveredArr, btnCheck);
+      PreviewShipsOnHover(e.target, ShipCount, HoveredArr, btnCheck);
     }
   });
 
@@ -43,10 +42,18 @@ let gameLoop = (function () {
         console.log(dummyBoard);
       }
       if (e.target.parentNode?.id === "DummyBoard") {
-        let boxId = e.target.id;
-        arrToAvoid = [...arrToAvoid, ...HoveredArr];
-        console.log(arrToAvoid);
-        // validPlacementShip(boxId, i);
+        let boxId = e.target;
+
+        let changeValObj = validPlacementShip(
+          boxId,
+          ShipCount,
+          arrToAvoid,
+          HoveredArr,
+          dummyBoard,
+          btnCheck
+        );
+        ShipCount = changeValObj.length;
+        arrToAvoid = changeValObj.ArrToBeCopied;
       }
       if (e.target?.id === "axisBtn") {
         if (btnCheck) {
