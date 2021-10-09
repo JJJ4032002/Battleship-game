@@ -1,3 +1,4 @@
+import Colors from "./components/Colors";
 function CreateGrid(params, Board) {
   let gameDiv = document.querySelector(".BlocksContainer");
   if (gameDiv === null) {
@@ -16,7 +17,7 @@ function CreateGrid(params, Board) {
   gameDiv.appendChild(Container);
   for (let i = 0; i < params; i++) {
     const IndDiv = document.createElement("div");
-    IndDiv.style.border = "2px solid #40916c";
+    IndDiv.style.border = `2px solid ${Colors.darkGreen}`;
     IndDiv.classList.add("box-items");
     IndDiv.setAttribute("data-box", `${Board}${i}`);
     IndDiv.setAttribute("data-box-number", i);
