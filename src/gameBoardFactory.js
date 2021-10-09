@@ -3,13 +3,14 @@ import PlaceAtPosition from "./PlaceAtPosition";
 import { ship } from "./shipFactory";
 
 const methodObj = {
-  placeShip: function (ShipLength, position, BoardId) {
+  placeShip: function (ShipLength, position, BoardId, axisDecider) {
     this.NoOfShips++;
     let ChildNodes = document.querySelector(`#${BoardId}`).children;
     ChildNodes = [...ChildNodes];
     let newShip = ship(ShipLength);
     this.shipsArr.push(newShip);
     ChildNodes.forEach(PlaceAtPosition, {
+      axisDecider,
       ShipLength,
       position,
       ShipCount: 0,
