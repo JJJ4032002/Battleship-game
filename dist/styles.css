@@ -69,10 +69,6 @@ input:focus {
   border: 0.3em solid #40916c;
 }
 
-.box-items {
-  transition: background-color 250ms ease-in-out;
-}
-
 @media (min-width: 900px) {
   .navContainer h1 {
     font-size: 3rem;
