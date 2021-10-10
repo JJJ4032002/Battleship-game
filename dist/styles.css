@@ -42,7 +42,8 @@ input:focus {
   padding: 0.5em 0.5em;
 }
 
-.submitButton {
+.submitButton,
+#axisBtn {
   margin: 0.5em 0;
   font-size: 1.2rem;
   padding: 0.4em 1em;
@@ -53,7 +54,8 @@ input:focus {
   cursor: pointer;
   transition: border 300ms ease, background-color 300ms ease, color 300ms ease;
 }
-.submitButton:hover {
+.submitButton:hover,
+#axisBtn:hover {
   background-color: #40916c;
   border: 0.2em solid #40916c;
   color: white;
