@@ -3,6 +3,7 @@ function validPlacementShip(
   length,
   ArrToBeCopied,
   ArrToBeCopiedFrom,
+  arrRed,
   board,
   axisDecider
 ) {
@@ -11,9 +12,13 @@ function validPlacementShip(
       element,
       axisDecider,
       ArrToBeCopied,
+      arrRed,
       length
     );
-    if (ClashedEleArr.length === 0) {
+    if (
+      ClashedEleArr.ValidatedArr.length === 0 &&
+      ClashedEleArr.ValidatedArrRed.length === 0
+    ) {
       board.placeShip(length, element.id, "DummyBoard", axisDecider);
       ArrToBeCopied = [...ArrToBeCopied, ...ArrToBeCopiedFrom];
       length++;
@@ -24,7 +29,7 @@ function validPlacementShip(
   return { length, ArrToBeCopied };
 }
 
-function validateTheArr(element, axisDecider, ArrToBeCopied, length) {
+function validateTheArr(element, axisDecider, ArrToBeCopied, arrRed, length) {
   let BlockCount = 0;
   let arrToValidate = [];
   let tempEle = element;
@@ -43,7 +48,11 @@ function validateTheArr(element, axisDecider, ArrToBeCopied, length) {
     return ArrToBeCopied.includes(e);
   });
 
-  return ValidatedArr;
+  const ValidatedArrRed = arrToValidate.filter((e) => {
+    return arrRed.includes(e);
+  });
+
+  return { ValidatedArr, ValidatedArrRed };
 }
 
 export default validPlacementShip;
