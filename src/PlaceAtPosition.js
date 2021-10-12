@@ -10,7 +10,7 @@ function PlaceAtPosition(e) {
     if (this.axisDecider) {
       this.position++;
     } else {
-      this.position = this.position + 10;
+      this.position = Number(this.position) + 10;
     }
 
     this.ShipCount++;
