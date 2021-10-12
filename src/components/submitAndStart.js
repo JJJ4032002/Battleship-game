@@ -9,7 +9,7 @@ function submitAndStart() {
   } else {
     let gameDiv = document.querySelector("#gameContainer");
     gameDiv.innerHTML = "";
-    let returnBoard = PlaceShipsOnBoard();
+    let returnBoard = PlaceShipsOnBoard(name);
 
     return returnBoard;
   }
