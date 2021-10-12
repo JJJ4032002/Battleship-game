@@ -1,5 +1,5 @@
 import Colors from "./Colors";
-function PreviewShipsOnHover(e, shipCount, arr, btn) {
+function PreviewShipsOnHover(e, shipCount, arr, arrRed, btn) {
   let i = 0;
   let j = 0;
   let SqrColor = e.id;
@@ -27,6 +27,7 @@ function PreviewShipsOnHover(e, shipCount, arr, btn) {
       e.style["background-color"] = Colors.green;
     } else {
       e.style["background-color"] = Colors.red;
+      arrRed.push(e);
     }
 
     arr.push(e);
