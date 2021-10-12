@@ -12,6 +12,7 @@ let gameLoop = (function () {
   let ShipCount = 1;
   let HoveredArr = [];
   let arrToAvoid = [];
+  let arrBlocksRed = [];
   let btnCheck = true;
 
   function hasClass(elem, className) {
@@ -26,8 +27,14 @@ let gameLoop = (function () {
       changeArrBackgroundColor(arrToAvoid, Colors.green);
       // Emptied the array to add only those elements in "arrToAvoid" that had Back-color green.
       HoveredArr = [];
-
-      PreviewShipsOnHover(e.target, ShipCount, HoveredArr, btnCheck);
+      arrBlocksRed = [];
+      PreviewShipsOnHover(
+        e.target,
+        ShipCount,
+        HoveredArr,
+        arrBlocksRed,
+        btnCheck
+      );
     }
   });
 
@@ -49,6 +56,7 @@ let gameLoop = (function () {
           ShipCount,
           arrToAvoid,
           HoveredArr,
+          arrBlocksRed,
           dummyBoard,
           btnCheck
         );
