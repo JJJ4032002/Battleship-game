@@ -4,6 +4,7 @@ function validPlacementShip(
   ArrToBeCopied,
   ArrToBeCopiedFrom,
   arrRed,
+  shipCoordinatesArr,
   board,
   axisDecider
 ) {
@@ -21,12 +22,16 @@ function validPlacementShip(
     ) {
       board.placeShip(length, element.id, "DummyBoard", axisDecider);
       ArrToBeCopied = [...ArrToBeCopied, ...ArrToBeCopiedFrom];
+      shipCoordinatesArr = [
+        ...shipCoordinatesArr,
+        { length: length, position: element.id, axisDecider: axisDecider },
+      ];
       length++;
     } else {
       console.log("Ship not placed");
     }
   }
-  return { length, ArrToBeCopied };
+  return { length, ArrToBeCopied, shipCoordinatesArr };
 }
 
 function validateTheArr(element, axisDecider, ArrToBeCopied, arrRed, length) {
