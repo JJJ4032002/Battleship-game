@@ -7,14 +7,14 @@ function checkWhoWon(boards, position1, shipLength1, position2, shipLength2) {
   let ifAllShipsB2 = boards.newBoard2.AllShipsSunk();
 
   if (ifAllShipsB1 === "All the ships are sunk") {
-    return "Board1 is the winner";
+    return "Board1 has lost the game";
   } else if (
     ifAllShipsB2 === "All the ships are sunk" &&
     ifAllShipsB1 === "All the ships are sunk"
   ) {
     return "The game has tied";
   } else if (ifAllShipsB2 === "All the ships are sunk") {
-    return "Board 2 is the winner";
+    return "Board 2 has lost the game";
   } else {
     return "No board has one the game yet";
   }
