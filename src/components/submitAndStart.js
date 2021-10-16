@@ -1,4 +1,3 @@
-import startMainGame from "./startMainGame";
 import PlaceShipsOnBoard from "./PlaceShipsOnBoard";
 
 function submitAndStart() {
@@ -8,7 +7,7 @@ function submitAndStart() {
     alert("Please Enter the name");
   } else {
     let gameDiv = document.querySelector("#gameContainer");
-    gameDiv.innerHTML = "";
+    gameDiv.parentElement.removeChild(gameDiv);
     let returnBoard = PlaceShipsOnBoard(name);
 
     return returnBoard;
