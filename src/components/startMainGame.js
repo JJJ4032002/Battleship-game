@@ -1,28 +1,18 @@
 import PlaceAllShips from "./placeAllShips";
 import { gameBoard } from "../gameBoardFactory";
 
-function startMainGame() {
+function startMainGame(arr) {
   let newBoard1 = gameBoard(100, "Board1");
   let newBoard2 = gameBoard(100, "Board2");
-  PlaceAllShips(
-    newBoard1,
-    [
-      { length: 1, position: 78 },
-      { length: 2, position: 2 },
-      { length: 3, position: 11 },
-      { length: 4, position: 22 },
-      { length: 5, position: 53 },
-    ],
-    "Board1"
-  );
+  PlaceAllShips(newBoard1, arr, "Board1");
   PlaceAllShips(
     newBoard2,
     [
-      { length: 1, position: 99 },
-      { length: 2, position: 7 },
-      { length: 3, position: 35 },
-      { length: 4, position: 65 },
-      { length: 5, position: 71 },
+      { length: 1, position: 99, axisDecider: true },
+      { length: 2, position: 7, axisDecider: true },
+      { length: 3, position: 35, axisDecider: true },
+      { length: 4, position: 65, axisDecider: true },
+      { length: 5, position: 71, axisDecider: true },
     ],
     "Board2"
   );
