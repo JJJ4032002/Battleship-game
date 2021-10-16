@@ -6,6 +6,7 @@ import PreviewShipsOnHover from "./components/PreviewShipsOnHover";
 import changeArrBackgroundColor from "./components/changeArrBackgroundColor";
 import Colors from "./components/Colors";
 import validPlacementShip from "./components/validPlacementShip";
+import StartGameAfterPlacement from "./components/StartGameAfterShipPlacement";
 let gameLoop = (function () {
   let boards;
   let dummyBoard;
@@ -13,6 +14,7 @@ let gameLoop = (function () {
   let HoveredArr = [];
   let arrToAvoid = [];
   let arrBlocksRed = [];
+  let shipCoordinatesArr = [];
   let btnCheck = true;
 
   function hasClass(elem, className) {
@@ -57,11 +59,17 @@ let gameLoop = (function () {
           arrToAvoid,
           HoveredArr,
           arrBlocksRed,
+          shipCoordinatesArr,
           dummyBoard,
           btnCheck
         );
         ShipCount = changeValObj.length;
         arrToAvoid = changeValObj.ArrToBeCopied;
+        shipCoordinatesArr = changeValObj.shipCoordinatesArr;
+        if (ShipCount > 5) {
+          document.querySelector("#DummyBoard").style["pointer-events"] =
+            "none";
+        }
       }
       if (e.target?.id === "axisBtn") {
         if (btnCheck) {
@@ -73,6 +81,9 @@ let gameLoop = (function () {
         }
       }
 
+      if (e.target?.id === "subBtn") {
+        boards = StartGameAfterPlacement(ShipCount, shipCoordinatesArr);
+      }
       if (e.target.parentNode?.id === "Board2") {
         console.log("Second Board clicked");
         let position1 = Math.floor(100 * Math.random());
