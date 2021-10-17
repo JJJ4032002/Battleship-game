@@ -1,12 +1,11 @@
 import submitAndStart from "./components/submitAndStart";
-import checkWhoWon from "./components/checkWhoWon";
-import CheckUnique from "./components/checkUnique";
-import ColorChange from "./components/ChangeColorBoard";
+
 import PreviewShipsOnHover from "./components/PreviewShipsOnHover";
 import changeArrBackgroundColor from "./components/changeArrBackgroundColor";
 import Colors from "./components/Colors";
 import validPlacementShip from "./components/validPlacementShip";
 import StartGameAfterPlacement from "./components/StartGameAfterShipPlacement";
+import getWinnerResult from "./components/getWinnerResult";
 let gameLoop = (function () {
   let boards;
   let dummyBoard;
@@ -53,16 +52,16 @@ let gameLoop = (function () {
       if (e.target.parentNode?.id === "DummyBoard") {
         let boxId = e.target;
 
-        let changeValObj = validPlacementShip(
-          boxId,
-          ShipCount,
-          arrToAvoid,
-          HoveredArr,
-          arrBlocksRed,
-          shipCoordinatesArr,
-          dummyBoard,
-          btnCheck
-        );
+        let changeValObj = validPlacementShip({
+          element: boxId,
+          length: ShipCount,
+          ArrToBeCopied: arrToAvoid,
+          ArrToBeCopiedFrom: HoveredArr,
+          arrRed: arrBlocksRed,
+          shipCoordinatesArr: shipCoordinatesArr,
+          board: dummyBoard,
+          axisDecider: btnCheck,
+        });
         ShipCount = changeValObj.length;
         arrToAvoid = changeValObj.ArrToBeCopied;
         shipCoordinatesArr = changeValObj.shipCoordinatesArr;
@@ -85,25 +84,8 @@ let gameLoop = (function () {
         boards = StartGameAfterPlacement(ShipCount, shipCoordinatesArr);
       }
       if (e.target.parentNode?.id === "Board2") {
-        console.log("Second Board clicked");
-        let position1 = Math.floor(100 * Math.random());
-        position1 = CheckUnique(position1);
-
         let element2 = e.target;
-        let element1 = document.querySelector(
-          `div[data-box=Board1${position1}]`
-        );
-        let dataShip1 = element1.getAttribute("data-ship");
-        let position2 = element2.id;
-        let dataShip2 = element2.getAttribute("data-ship");
-        ColorChange(dataShip1, dataShip2, element1, element2);
-        let whoWon = checkWhoWon(
-          boards,
-          position1,
-          dataShip1,
-          position2,
-          dataShip2
-        );
+        let whoWon = getWinnerResult(element2, boards);
         console.log(whoWon);
       }
     },
