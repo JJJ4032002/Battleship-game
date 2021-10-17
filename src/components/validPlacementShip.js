@@ -1,4 +1,4 @@
-function validPlacementShip(
+function validPlacementShip({
   element,
   length,
   ArrToBeCopied,
@@ -6,8 +6,8 @@ function validPlacementShip(
   arrRed,
   shipCoordinatesArr,
   board,
-  axisDecider
-) {
+  axisDecider,
+}) {
   if (length <= 5) {
     let ClashedEleArr = validateTheArr(
       element,
