@@ -44,7 +44,8 @@ input:focus {
 
 .submitButton,
 #axisBtn,
-#subBtn {
+#subBtn,
+#RestartBtn {
   margin: 0.5em auto;
   font-size: 1.2rem;
   display: block;
@@ -59,7 +60,8 @@ input:focus {
 
 .submitButton:hover,
 #axisBtn:hover,
-#subBtn:hover {
+#subBtn:hover,
+#RestartBtn:hover {
   background-color: #40916c;
   border: 0.2em solid #40916c;
   color: white;
