@@ -9,7 +9,7 @@ function checkWhoWon(props) {
   } else if (props.ifAllShipsB2 === "All the ships are sunk") {
     return "Board 2 has lost the game";
   } else {
-    return "No board has one the game yet";
+    return "No board has won the game yet";
   }
 }
 
