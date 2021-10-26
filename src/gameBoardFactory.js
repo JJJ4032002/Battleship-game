@@ -48,6 +48,47 @@ const methodObj = {
       return "All the ships have not been sunk yet";
     }
   },
+  checkValidShipPlacement: function (xCod, yCod, shipLength, axisDecider) {
+    let i = 0;
+    let ArrToBeChecked = [];
+    while (i < shipLength) {
+      ArrToBeChecked.push(yCod);
+      if (axisDecider) {
+        ArrToBeChecked.push(yCod);
+        yCod++;
+      } else {
+        ArrToBeChecked.push(xCod);
+        xCod++;
+      }
+      i++;
+    }
+
+    let FilteredArr = ArrToBeChecked.filter((e) => {
+      return this.shipsPlacedArr.includes(e);
+    });
+    /* Conditions where ships cannot be placed if the rows number is undefined eg - xCol = 4 but there are only three rows defined.
+    or Ships are overlapping in this cased the filtered array would be filled.
+    or condition where the ships in horizontal condition cannot be placed boardBlocks[0][10]. But it will be undefined as there are only 9 columns.
+    */
+
+    console.log(xCod, yCod);
+    if (
+      this.boardBlocks[xCod] === undefined ||
+      FilteredArr.length !== 0 ||
+      this.boardBlocks[xCod][yCod] === undefined
+    ) {
+      return false;
+    }
+    // else if(){
+
+    // }
+    this.shipsPlacedArr = [...this.shipsPlacedArr, ...ArrToBeChecked];
+
+    return true;
+  },
+  getBoard: function () {
+    return this.boardBlocks;
+  },
 };
 
 function gameBoard(length, Board) {
@@ -55,14 +96,15 @@ function gameBoard(length, Board) {
   let CoordinatesArr = [];
   let NoOfShips = 0;
   let ShipsSunkArr = [];
-
-  CreateGrid(length, Board);
-
+  let shipsPlacedArr = [];
+  let boardBlocks = new Array(length).fill(new Array(10).fill(""));
   let gameBoardObj = Object.assign(Object.create(methodObj), {
     shipsArr,
     CoordinatesArr,
     NoOfShips,
     ShipsSunkArr,
+    boardBlocks,
+    shipsPlacedArr,
   });
   return gameBoardObj;
 }
