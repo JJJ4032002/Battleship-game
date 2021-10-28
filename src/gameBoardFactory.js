@@ -24,27 +24,31 @@ const methodObj = {
     this.shipsArr.push(newShip);
   },
   receiveAttack: function (row, column, shipLength) {
-    let index = this.CoordinatesArr.indexOf(position);
+    let element = [row, column];
+    let index = this.CoordinatesArr.findIndex((e) => {
+      return e[0] === element[0] && e[1] === element[1];
+    });
     if (index != -1) {
       return "The ship has already been hit";
     } else if (index === -1 && shipLength != null) {
-      this.CoordinatesArr.push(position);
+      this.CoordinatesArr.push([row, column]);
       function FindShip(params) {
         return Number(shipLength) === params.ShipLength;
       }
       let ShipIndex = this.shipsArr.findIndex(FindShip);
       let thatShip = this.shipsArr[ShipIndex];
 
-      thatShip.hit(position);
+      thatShip.hit();
+      this.boardBlocks[row][column] = "hit";
       let shipCondition = thatShip.isSunk();
       if (shipCondition === "Oh the ship has been sunk") {
         this.ShipsSunkArr.push(thatShip);
       }
 
-      return "The ship has been hit and Coordinates have been noted";
+      return "The ship has been hit and coordinates have been noted";
     } else {
-      this.CoordinatesArr.push(position);
-      return "Opps missed the ship";
+      this.CoordinatesArr.push([row, column]);
+      return "oops you missed the ship";
     }
   },
   AllShipsSunk: function () {
