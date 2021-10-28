@@ -3,21 +3,27 @@ import PlaceAtPosition from "./PlaceAtPosition";
 import { ship } from "./shipFactory";
 
 const methodObj = {
-  placeShip: function (ShipLength, position, BoardId, axisDecider) {
+  placeShip: function (row, column, shipLength, axisDecider) {
     this.NoOfShips++;
-    let ChildNodes = document.querySelector(`#${BoardId}`).children;
-    ChildNodes = [...ChildNodes];
-    let newShip = ship(ShipLength);
+
+    let i = 0;
+
+    while (i < shipLength) {
+      this.boardBlocks[row][column] = `S${shipLength}`;
+
+      console.log(row, column);
+      if (axisDecider) {
+        column++;
+      } else {
+        row++;
+      }
+      i++;
+    }
+
+    let newShip = ship(shipLength);
     this.shipsArr.push(newShip);
-    ChildNodes.forEach(PlaceAtPosition, {
-      axisDecider,
-      ShipLength,
-      position,
-      ShipCount: 0,
-      BoardId,
-    });
   },
-  receiveAttack: function (position, shipLength) {
+  receiveAttack: function (row, column, shipLength) {
     let index = this.CoordinatesArr.indexOf(position);
     if (index != -1) {
       return "The ship has already been hit";
@@ -48,40 +54,62 @@ const methodObj = {
       return "All the ships have not been sunk yet";
     }
   },
-  checkValidShipPlacement: function (xCod, yCod, shipLength, axisDecider) {
+  checkValidShipPlacement: function (row, column, shipLength, axisDecider) {
     let i = 0;
     let ArrToBeChecked = [];
     while (i < shipLength) {
-      ArrToBeChecked.push(yCod);
+      ArrToBeChecked.push([row, column]);
       if (axisDecider) {
-        ArrToBeChecked.push(yCod);
-        yCod++;
+        column++;
       } else {
-        ArrToBeChecked.push(xCod);
-        xCod++;
+        row++;
       }
       i++;
     }
 
-    let FilteredArr = ArrToBeChecked.filter((e) => {
-      return this.shipsPlacedArr.includes(e);
-    });
+    // let FilteredArr = ArrToBeChecked.filter((e) => {
+    //   return this.shipsPlacedArr.includes(e);
+    // });
+    let FilteredArr = [];
+    if (this.shipsPlacedArr.length === 0) {
+      console.log(
+        "Ship for the first iteration as there will be no overlapping"
+      );
+    } else {
+      // FilteredArr = ArrToBeChecked.filter((e, index0) => {
+      //   return e.every(
+      //     (val, index) => val === this.shipsPlacedArr[index0][index]
+      //   );
+      // });
+      let toCheckArr = [];
+      ArrToBeChecked.forEach((arrayElement) => {
+        //[[1,2,3],[4,5]] initial array
+        this.shipsPlacedArr.forEach((indiArr) => {
+          // Array to be checked from.
+          indiArr.forEach((ele, index) => {
+            if (ele === arrayElement[index]) toCheckArr.push(ele); //checking every element of shipsPlacedArr with arrayElement
+          });
+          if (toCheckArr.length === arrayElement.length)
+            FilteredArr.push(toCheckArr);
+
+          toCheckArr = [];
+        });
+      });
+    }
+
     /* Conditions where ships cannot be placed if the rows number is undefined eg - xCol = 4 but there are only three rows defined.
     or Ships are overlapping in this cased the filtered array would be filled.
     or condition where the ships in horizontal condition cannot be placed boardBlocks[0][10]. But it will be undefined as there are only 9 columns.
     */
 
-    console.log(xCod, yCod);
     if (
-      this.boardBlocks[xCod] === undefined ||
+      this.boardBlocks[row] === undefined ||
       FilteredArr.length !== 0 ||
-      this.boardBlocks[xCod][yCod] === undefined
+      this.boardBlocks[row][column] === undefined
     ) {
       return false;
     }
-    // else if(){
 
-    // }
     this.shipsPlacedArr = [...this.shipsPlacedArr, ...ArrToBeChecked];
 
     return true;
@@ -97,7 +125,7 @@ function gameBoard(length, Board) {
   let NoOfShips = 0;
   let ShipsSunkArr = [];
   let shipsPlacedArr = [];
-  let boardBlocks = new Array(length).fill(new Array(10).fill(""));
+  let boardBlocks = Array.from({ length: length }, (e) => Array(10).fill(""));
   let gameBoardObj = Object.assign(Object.create(methodObj), {
     shipsArr,
     CoordinatesArr,
