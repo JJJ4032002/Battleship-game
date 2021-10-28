@@ -7,7 +7,7 @@ let newGameBoard = gameBoard(3);
 
 test("If the board has been created", () => {
   expect(newGameBoard.getBoard()).toStrictEqual(
-    new Array(3).fill(new Array(10).fill(""))
+    Array.from({ length: 3 }, (e) => Array(10).fill(""))
   );
 });
 
@@ -39,20 +39,38 @@ test("Check - ship placement horizontal condition with overflow", () => {
   expect(newGameBoard.checkValidShipPlacement(0, 8, 4, true)).toBe(false);
 });
 
-// test("Check if ship has been placed", () => {
-//   newGameBoard.placeShip(0, 4, 4, true);
-//   expect(newBoard.getBoard()).toBe([
-//     ["", "", "", "", "X", "X", "X", "X", "", ""],
-//     ["", "", "", "", "", "", "", "", "", ""],
-//     ["", "", "", "", "", "", "", "", "", ""],
-//   ]);
+test("Check if ship has been placed", () => {
+  newGameBoard.placeShip(0, 4, 4, true);
+  expect(newGameBoard.getBoard()).toStrictEqual([
+    ["", "", "", "", "S4", "S4", "S4", "S4", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""],
+  ]);
+});
+
+test("Check if ship has been placed", () => {
+  newGameBoard.placeShip(0, 2, 2, false);
+  expect(newGameBoard.getBoard()).toStrictEqual([
+    ["", "", "S2", "", "S4", "S4", "S4", "S4", "", ""],
+    ["", "", "S2", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""],
+  ]);
+});
+
+// test("Check -  attack correct ship coordinate", () => {
+//   expect(newGameBoard.receiveAttack(0, 4, 4)).toBe(
+//     "The ship has been hit and coordinates have been noted"
+//   );
 // });
 
-// test("Check if ship has been placed", () => {
-//   newGameBoard.placeShip(3, 2, false);
-//   expect(newGameBoard.getBoard()).toBe([
-//     ["", "", "X", "", "X", "X", "X", "X", "", ""],
-//     ["", "", "X", "", "", "", "", "", "", ""],
-//     ["", "", "", "", "", "", "", "", "", ""],
-//   ]);
+// test("Check - Missed attack on ship", () => {
+//   expect(newGameBoard.receiveAttack(1, 1, null)).toBe(
+//     "oops you missed the ship"
+//   );
+// });
+
+// test("Check - Attacked the same coordinate twice", () => {
+//   expect(newGameBoard.receiveAttack(0, 4, 4)).toBe(
+//     "The ship has already been hit"
+//   );
 // });
