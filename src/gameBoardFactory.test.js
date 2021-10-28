@@ -57,20 +57,36 @@ test("Check if ship has been placed", () => {
   ]);
 });
 
-// test("Check -  attack correct ship coordinate", () => {
-//   expect(newGameBoard.receiveAttack(0, 4, 4)).toBe(
-//     "The ship has been hit and coordinates have been noted"
-//   );
-// });
+test("Check -  attack correct ship coordinate", () => {
+  expect(newGameBoard.receiveAttack(0, 4, 4)).toBe(
+    "The ship has been hit and coordinates have been noted"
+  );
+});
 
-// test("Check - Missed attack on ship", () => {
-//   expect(newGameBoard.receiveAttack(1, 1, null)).toBe(
-//     "oops you missed the ship"
-//   );
-// });
+test("Check - Missed attack on ship", () => {
+  expect(newGameBoard.receiveAttack(1, 1, null)).toBe(
+    "oops you missed the ship"
+  );
+});
 
-// test("Check - Attacked the same coordinate twice", () => {
-//   expect(newGameBoard.receiveAttack(0, 4, 4)).toBe(
-//     "The ship has already been hit"
-//   );
-// });
+test("Check - Attacked the same coordinate twice", () => {
+  expect(newGameBoard.receiveAttack(0, 4, 4)).toBe(
+    "The ship has already been hit"
+  );
+});
+
+test("Check - If all the ships are sunk", () => {
+  newGameBoard.receiveAttack(0, 2, 2);
+  newGameBoard.receiveAttack(1, 2, 2);
+  newGameBoard.receiveAttack(0, 5, 4);
+  newGameBoard.receiveAttack(0, 6, 4);
+
+  expect(newGameBoard.AllShipsSunk()).toBe(
+    "All the ships have not been sunk yet"
+  );
+});
+
+test("Check - If all the ships are sunk", () => {
+  newGameBoard.receiveAttack(0, 7, 4);
+  expect(newGameBoard.AllShipsSunk()).toBe("All the ships are sunk");
+});
