@@ -1,13 +1,7 @@
 const methodsObj = {
-  hit: function (position) {
-    let index = this.arr.findIndex((x) => x === position);
-    if (index === -1) {
-      this.arr.push(position);
-      this.length--;
-      return "The ship has been hit";
-    } else {
-      return "This position has already been hit";
-    }
+  hit: function () {
+    this.length--;
+    return "The ship has been hit";
   },
   isSunk: function () {
     if (this.length === 0) {
