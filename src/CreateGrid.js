@@ -10,20 +10,19 @@ function CreateGrid(params, Board) {
   const Container = document.createElement("div");
   Container.setAttribute("class", "container");
   Container.setAttribute("id", `${Board}`);
-  Container.style.display = "grid";
-  Container.style.gridTemplateColumns = "repeat(10,1fr)";
-  Container.style.gridTemplateRows = "repeat(10,minmax(35px,1fr)";
+
   Container.style.width = "100%";
   gameDiv.appendChild(Container);
   for (let i = 0; i < params; i++) {
     const IndDiv = document.createElement("div");
-    IndDiv.style.border = `2px solid ${Colors.darkGreen}`;
-    IndDiv.classList.add("box-items");
-    IndDiv.setAttribute("data-box", `${Board}${i}`);
-    IndDiv.setAttribute("data-box-number", i);
-    IndDiv.setAttribute("id", i);
-    if (Board === "Board2") {
-      IndDiv.style["cursor"] = "pointer";
+    IndDiv.classList.add("Row");
+    for (let j = 0; j < params; j++) {
+      let indiBlock = document.createElement("div");
+      indiBlock.classList.add("box-items");
+      indiBlock.setAttribute("data-row", i);
+      indiBlock.setAttribute("data-column", j);
+      indiBlock.style.border = `2px solid ${Colors.darkGreen}`;
+      IndDiv.appendChild(indiBlock);
     }
 
     Container.appendChild(IndDiv);
