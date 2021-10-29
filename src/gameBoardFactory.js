@@ -11,7 +11,6 @@ const methodObj = {
     while (i < shipLength) {
       this.boardBlocks[row][column] = `S${shipLength}`;
 
-      console.log(row, column);
       if (axisDecider) {
         column++;
       } else {
@@ -71,20 +70,12 @@ const methodObj = {
       i++;
     }
 
-    // let FilteredArr = ArrToBeChecked.filter((e) => {
-    //   return this.shipsPlacedArr.includes(e);
-    // });
     let FilteredArr = [];
     if (this.shipsPlacedArr.length === 0) {
       console.log(
         "Ship for the first iteration as there will be no overlapping"
       );
     } else {
-      // FilteredArr = ArrToBeChecked.filter((e, index0) => {
-      //   return e.every(
-      //     (val, index) => val === this.shipsPlacedArr[index0][index]
-      //   );
-      // });
       let toCheckArr = [];
       ArrToBeChecked.forEach((arrayElement) => {
         //[[1,2,3],[4,5]] initial array
@@ -123,7 +114,7 @@ const methodObj = {
   },
 };
 
-function gameBoard(length, Board) {
+function gameBoard(length) {
   let shipsArr = [];
   let CoordinatesArr = [];
   let NoOfShips = 0;
