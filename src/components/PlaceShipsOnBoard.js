@@ -1,3 +1,4 @@
+import CreateGrid from "../CreateGrid";
 import { gameBoard } from "../gameBoardFactory";
 
 function PlaceShipsOnBoard(name) {
@@ -17,7 +18,8 @@ function PlaceShipsOnBoard(name) {
   let OuterContainer = document.querySelector(".OuterContainer");
   OuterContainer.appendChild(btnDiv);
 
-  let dummyBoard = gameBoard(100, "DummyBoard");
+  let dummyBoard = gameBoard(10, "DummyBoard");
+  CreateGrid(10, "DummyBoard");
 
   return dummyBoard;
 }
