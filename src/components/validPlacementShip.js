@@ -8,28 +8,16 @@ function validPlacementShip({
   board,
   axisDecider,
 }) {
-  if (length <= 5) {
-    let ClashedEleArr = validateTheArr(
-      element,
-      axisDecider,
-      ArrToBeCopied,
-      arrRed,
-      length
-    );
-    if (
-      ClashedEleArr.ValidatedArr.length === 0 &&
-      ClashedEleArr.ValidatedArrRed.length === 0
-    ) {
-      board.placeShip(length, element.id, "DummyBoard", axisDecider);
-      ArrToBeCopied = [...ArrToBeCopied, ...ArrToBeCopiedFrom];
-      shipCoordinatesArr = [
-        ...shipCoordinatesArr,
-        { length: length, position: element.id, axisDecider: axisDecider },
-      ];
-      length++;
-    } else {
-      console.log("Ship not placed");
-    }
+  let row = document.getAttribute("data-row");
+  let column = document.getAttribute("data-column");
+  let ifShipCanBePlaced = board.checkValidShipPlacement(
+    row,
+    column,
+    length,
+    axisDecider
+  );
+  if (ifShipCanBePlaced) {
+    board.placeShip(row, column, shipLength, axisDecider);
   }
   return { length, ArrToBeCopied, shipCoordinatesArr };
 }
