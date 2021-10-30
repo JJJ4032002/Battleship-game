@@ -10,7 +10,7 @@ import RestartGame from "./components/RestartGame";
 let gameLoop = (function () {
   let boards;
   let dummyBoard;
-  let ShipCount = 1;
+  let ShipCount = 3;
   let HoveredArr = [];
   let arrToAvoid = [];
   let arrBlocksRed = [];
@@ -23,7 +23,7 @@ let gameLoop = (function () {
 
   // Listening to mouseover events
   document.addEventListener("mouseover", function (e) {
-    if (e.target.parentNode?.id === "DummyBoard") {
+    if (e.target.parentNode?.className === "Row") {
       changeArrBackgroundColor(HoveredArr, Colors.white);
 
       changeArrBackgroundColor(arrToAvoid, Colors.green);
@@ -50,7 +50,7 @@ let gameLoop = (function () {
         dummyBoard = submitAndStart();
         console.log(dummyBoard);
       }
-      if (e.target.parentNode?.id === "DummyBoard") {
+      if (e.target.parentNode?.className === "Row") {
         let boxId = e.target;
 
         let changeValObj = validPlacementShip({
