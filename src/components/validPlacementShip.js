@@ -3,7 +3,7 @@ function validPlacementShip({
   element,
   length,
   ArrToBeCopied,
-
+  shipCoordinatesArr,
   board,
   axisDecider,
 }) {
@@ -17,16 +17,16 @@ function validPlacementShip({
   );
   if (ifShipCanBePlaced) {
     board.placeShip(row, column, length, axisDecider);
-    ArrToBeCopied = PlaceAtPosition(
-      row,
-      column,
-      length,
-      axisDecider,
-      ArrToBeCopied
-    );
+    let ArrToAvoidCurrent = PlaceAtPosition(row, column, length, axisDecider);
+    ArrToBeCopied = [...ArrToBeCopied, ...ArrToAvoidCurrent];
+
+    shipCoordinatesArr = [
+      ...shipCoordinatesArr,
+      { row: row, column: column, length: length, axisDecider: axisDecider },
+    ];
     length++;
   }
-  return { length, ArrToBeCopied };
+  return { length, ArrToBeCopied, shipCoordinatesArr };
 }
 
 export default validPlacementShip;
