@@ -16,6 +16,7 @@ function CreateGrid(params, Board) {
   for (let i = 0; i < params; i++) {
     const IndDiv = document.createElement("div");
     IndDiv.classList.add("Row");
+    IndDiv.setAttribute("id", `Row${i}`);
     for (let j = 0; j < params; j++) {
       let indiBlock = document.createElement("div");
       indiBlock.classList.add("box-items");
