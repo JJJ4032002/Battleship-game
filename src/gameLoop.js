@@ -23,7 +23,7 @@ let gameLoop = (function () {
 
   // Listening to mouseover events
   document.addEventListener("mouseover", function (e) {
-    if (e.target.parentNode?.className === "Row") {
+    if (e.target.parentNode.parentNode?.id === "DummyBoard") {
       changeArrBackgroundColor(HoveredArr, Colors.white);
 
       changeArrBackgroundColor(arrToAvoid, Colors.green);
@@ -50,18 +50,20 @@ let gameLoop = (function () {
         dummyBoard = submitAndStart();
         console.log(dummyBoard);
       }
-      if (e.target.parentNode?.className === "Row") {
+      if (e.target.parentNode.parentNode?.id === "DummyBoard") {
         let boxId = e.target;
 
         let changeValObj = validPlacementShip({
           element: boxId,
           length: ShipCount,
           ArrToBeCopied: arrToAvoid,
+          shipCoordinatesArr: shipCoordinatesArr,
           board: dummyBoard,
           axisDecider: btnCheck,
         });
         ShipCount = changeValObj.length;
         arrToAvoid = changeValObj.ArrToBeCopied;
+        shipCoordinatesArr = changeValObj.shipCoordinatesArr;
 
         if (ShipCount > 5) {
           document.querySelector("#DummyBoard").style["pointer-events"] =
