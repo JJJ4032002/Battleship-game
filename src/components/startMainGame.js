@@ -1,19 +1,24 @@
 import PlaceAllShips from "./placeAllShips";
 import { gameBoard } from "../gameBoardFactory";
 import elementCreator from "./elementCreator";
+import CreateGrid from "../CreateGrid";
 
 function startMainGame(arr) {
-  let newBoard1 = gameBoard(100, "Board1");
-  let newBoard2 = gameBoard(100, "Board2");
+  let newBoard1 = gameBoard(10);
+  let newBoard2 = gameBoard(10);
+  CreateGrid(10, "Board1");
+  CreateGrid(10, "Board2");
+
   PlaceAllShips(newBoard1, arr, "Board1");
+
   PlaceAllShips(
     newBoard2,
     [
-      { length: 1, position: 99, axisDecider: true },
-      { length: 2, position: 7, axisDecider: true },
-      { length: 3, position: 35, axisDecider: true },
-      { length: 4, position: 65, axisDecider: true },
-      { length: 5, position: 71, axisDecider: true },
+      { row: 1, column: 2, length: 1, axisDecider: true },
+      { row: 2, column: 7, length: 2, axisDecider: true },
+      { row: 3, column: 0, length: 3, axisDecider: true },
+      { row: 8, column: 1, length: 4, axisDecider: true },
+      { row: 6, column: 3, length: 5, axisDecider: true },
     ],
     "Board2"
   );
