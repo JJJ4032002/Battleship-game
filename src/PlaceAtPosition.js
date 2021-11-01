@@ -1,11 +1,29 @@
-function PlaceAtPosition(row, column, shipLength, axisDecider, arrToAvoid) {
+import Colors from "./components/Colors";
+
+function PlaceAtPosition(
+  row,
+  column,
+  shipLength,
+  axisDecider,
+  BoardId = "DummyBoard"
+) {
   let shipCount = 0;
+  let arrToAvoid = [];
   while (shipCount < shipLength) {
+    console.log(row, column, BoardId);
+    console.log(typeof row, typeof column);
     let elementToBeHiglighted = document.querySelector(
-      `div[data-coordinates="${row}${column}"]`
+      `#${BoardId}${row}${column}`
     );
+
     arrToAvoid = [...arrToAvoid, elementToBeHiglighted];
-    elementToBeHiglighted.style["background-color"] = "eeb5e";
+    if (BoardId !== "Board2") {
+      elementToBeHiglighted.style["background-color"] = Colors.green;
+
+      console.log("done");
+      console.log(elementToBeHiglighted);
+    }
+
     if (axisDecider) {
       column++;
     } else {
