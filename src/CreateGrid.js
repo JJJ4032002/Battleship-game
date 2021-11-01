@@ -23,6 +23,7 @@ function CreateGrid(params, Board) {
       indiBlock.setAttribute("data-row", i);
       indiBlock.setAttribute("data-column", j);
       indiBlock.setAttribute("data-coordinates", `${i}${j}`);
+      indiBlock.setAttribute("id", `${Board}${i}${j}`);
       indiBlock.style.border = `2px solid ${Colors.darkGreen}`;
       IndDiv.appendChild(indiBlock);
     }
