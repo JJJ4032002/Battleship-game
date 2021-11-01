@@ -10,7 +10,7 @@ import RestartGame from "./components/RestartGame";
 let gameLoop = (function () {
   let boards;
   let dummyBoard;
-  let ShipCount = 3;
+  let ShipCount = 1;
   let HoveredArr = [];
   let arrToAvoid = [];
   let arrBlocksRed = [];
@@ -57,15 +57,12 @@ let gameLoop = (function () {
           element: boxId,
           length: ShipCount,
           ArrToBeCopied: arrToAvoid,
-          ArrToBeCopiedFrom: HoveredArr,
-          arrRed: arrBlocksRed,
-          shipCoordinatesArr: shipCoordinatesArr,
           board: dummyBoard,
           axisDecider: btnCheck,
         });
         ShipCount = changeValObj.length;
         arrToAvoid = changeValObj.ArrToBeCopied;
-        shipCoordinatesArr = changeValObj.shipCoordinatesArr;
+
         if (ShipCount > 5) {
           document.querySelector("#DummyBoard").style["pointer-events"] =
             "none";

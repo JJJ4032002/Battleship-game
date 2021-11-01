@@ -1,20 +1,19 @@
-function PlaceAtPosition(e) {
-  let StringNum = this.position.toString();
-
-  if (e.id === StringNum && this.ShipCount < this.ShipLength) {
-    if (this.BoardId !== "Board2") {
-      e.style["background-color"] = "#6eeb5e";
-    }
-
-    e.setAttribute("data-ship", this.ShipLength);
-    if (this.axisDecider) {
-      this.position++;
+function PlaceAtPosition(row, column, shipLength, axisDecider, arrToAvoid) {
+  let shipCount = 0;
+  while (shipCount < shipLength) {
+    let elementToBeHiglighted = document.querySelector(
+      `div[data-coordinates="${row}${column}"]`
+    );
+    arrToAvoid = [...arrToAvoid, elementToBeHiglighted];
+    elementToBeHiglighted.style["background-color"] = "eeb5e";
+    if (axisDecider) {
+      column++;
     } else {
-      this.position = Number(this.position) + 10;
+      row++;
     }
-
-    this.ShipCount++;
+    shipCount++;
   }
+  return arrToAvoid;
 }
 
 export default PlaceAtPosition;
