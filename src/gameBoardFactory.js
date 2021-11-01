@@ -61,13 +61,20 @@ const methodObj = {
     let i = 0;
     let ArrToBeChecked = [];
     while (i < shipLength) {
-      ArrToBeChecked.push([row, column]);
+      ArrToBeChecked.push([Number(row), Number(column)]);
       if (axisDecider) {
         column++;
       } else {
         row++;
       }
       i++;
+    }
+
+    if (axisDecider) {
+      //Reverting back to correct coordinates
+      column = column - 1;
+    } else {
+      row = row - 1;
     }
 
     let FilteredArr = [];
@@ -106,7 +113,7 @@ const methodObj = {
     }
 
     this.shipsPlacedArr = [...this.shipsPlacedArr, ...ArrToBeChecked];
-
+    console.log(this.shipsPlacedArr);
     return true;
   },
   getBoard: function () {
