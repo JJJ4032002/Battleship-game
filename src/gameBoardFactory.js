@@ -9,7 +9,7 @@ const methodObj = {
     let i = 0;
 
     while (i < shipLength) {
-      this.boardBlocks[row][column] = `S${shipLength}`;
+      this.boardBlocks[row][column] = `${shipLength}`;
 
       if (axisDecider) {
         column++;
@@ -22,14 +22,15 @@ const methodObj = {
     let newShip = ship(shipLength);
     this.shipsArr.push(newShip);
   },
-  receiveAttack: function (row, column, shipLength) {
+  receiveAttack: function (row, column) {
     let element = [row, column];
+    let shipLength = this.boardBlocks[row][column];
     let index = this.CoordinatesArr.findIndex((e) => {
       return e[0] === element[0] && e[1] === element[1];
     });
     if (index != -1) {
       return "The ship has already been hit";
-    } else if (index === -1 && shipLength != null) {
+    } else if (index === -1 && shipLength != "") {
       this.CoordinatesArr.push([row, column]);
       function FindShip(params) {
         return Number(shipLength) === params.ShipLength;

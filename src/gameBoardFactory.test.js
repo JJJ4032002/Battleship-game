@@ -42,7 +42,7 @@ test("Check - ship placement horizontal condition with overflow", () => {
 test("Check if ship has been placed", () => {
   newGameBoard.placeShip(0, 4, 4, true);
   expect(newGameBoard.getBoard()).toStrictEqual([
-    ["", "", "", "", "S4", "S4", "S4", "S4", "", ""],
+    ["", "", "", "", "4", "4", "4", "4", "", ""],
     ["", "", "", "", "", "", "", "", "", ""],
     ["", "", "", "", "", "", "", "", "", ""],
   ]);
@@ -51,35 +51,33 @@ test("Check if ship has been placed", () => {
 test("Check if ship has been placed", () => {
   newGameBoard.placeShip(0, 2, 2, false);
   expect(newGameBoard.getBoard()).toStrictEqual([
-    ["", "", "S2", "", "S4", "S4", "S4", "S4", "", ""],
-    ["", "", "S2", "", "", "", "", "", "", ""],
+    ["", "", "2", "", "4", "4", "4", "4", "", ""],
+    ["", "", "2", "", "", "", "", "", "", ""],
     ["", "", "", "", "", "", "", "", "", ""],
   ]);
 });
 
 test("Check -  attack correct ship coordinate", () => {
-  expect(newGameBoard.receiveAttack(0, 4, 4)).toBe(
+  expect(newGameBoard.receiveAttack(0, 4)).toBe(
     "The ship has been hit and coordinates have been noted"
   );
 });
 
 test("Check - Missed attack on ship", () => {
-  expect(newGameBoard.receiveAttack(1, 1, null)).toBe(
-    "oops you missed the ship"
-  );
+  expect(newGameBoard.receiveAttack(1, 1)).toBe("oops you missed the ship");
 });
 
 test("Check - Attacked the same coordinate twice", () => {
-  expect(newGameBoard.receiveAttack(0, 4, 4)).toBe(
+  expect(newGameBoard.receiveAttack(0, 4)).toBe(
     "The ship has already been hit"
   );
 });
 
 test("Check - If all the ships are sunk", () => {
-  newGameBoard.receiveAttack(0, 2, 2);
-  newGameBoard.receiveAttack(1, 2, 2);
-  newGameBoard.receiveAttack(0, 5, 4);
-  newGameBoard.receiveAttack(0, 6, 4);
+  newGameBoard.receiveAttack(0, 2);
+  newGameBoard.receiveAttack(1, 2);
+  newGameBoard.receiveAttack(0, 5);
+  newGameBoard.receiveAttack(0, 6);
 
   expect(newGameBoard.AllShipsSunk()).toBe(
     "All the ships have not been sunk yet"
@@ -87,6 +85,6 @@ test("Check - If all the ships are sunk", () => {
 });
 
 test("Check - If all the ships are sunk", () => {
-  newGameBoard.receiveAttack(0, 7, 4);
+  newGameBoard.receiveAttack(0, 7);
   expect(newGameBoard.AllShipsSunk()).toBe("All the ships are sunk");
 });
