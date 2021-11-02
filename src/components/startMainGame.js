@@ -2,8 +2,9 @@ import PlaceAllShips from "./placeAllShips";
 import { gameBoard } from "../gameBoardFactory";
 import elementCreator from "./elementCreator";
 import CreateGrid from "../CreateGrid";
+import Player from "../Player";
 
-function startMainGame(arr) {
+function startMainGame(arr, name) {
   let newBoard1 = gameBoard(10);
   let newBoard2 = gameBoard(10);
   CreateGrid(10, "Board1");
@@ -27,10 +28,13 @@ function startMainGame(arr) {
   let restBtn = elementCreator("button", { id: "RestartBtn" });
   restBtn.textContent = "Restart";
   restBtnDiv.appendChild(restBtn);
-
+  console.log(newBoard1.boardBlocks);
+  console.log(newBoard2.boardBlocks);
   document.querySelector(".OuterContainer").appendChild(restBtnDiv);
+  let PlayerOne = Player(name, newBoard2);
+  let PlayerTwo = Player("AI", newBoard1);
 
-  return { newBoard1, newBoard2 };
+  return { newBoard1, newBoard2, PlayerOne, PlayerTwo };
 }
 
 export default startMainGame;

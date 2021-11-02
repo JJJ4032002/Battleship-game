@@ -1,6 +1,6 @@
 import startMainGame from "./startMainGame";
 
-function StartGameAfterPlacement(length, shipsCoordinatesArr) {
+function StartGameAfterPlacement(length, shipsCoordinatesArr, PlayerOne) {
   if (length < 6) {
     alert("Please place all the ships");
   } else {
@@ -9,7 +9,7 @@ function StartGameAfterPlacement(length, shipsCoordinatesArr) {
     btnCont.parentElement.removeChild(btnCont);
     gridContainer.parentElement.removeChild(gridContainer);
 
-    return startMainGame(shipsCoordinatesArr);
+    return startMainGame(shipsCoordinatesArr, PlayerOne);
   }
 }
 
