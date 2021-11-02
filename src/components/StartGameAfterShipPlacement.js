@@ -1,4 +1,4 @@
-import startMainGame from "./startMainGame";
+import InitializeMainGame from "./InitializeMainGame";
 
 function StartGameAfterPlacement(length, shipsCoordinatesArr, PlayerOne) {
   if (length < 6) {
@@ -9,7 +9,7 @@ function StartGameAfterPlacement(length, shipsCoordinatesArr, PlayerOne) {
     btnCont.parentElement.removeChild(btnCont);
     gridContainer.parentElement.removeChild(gridContainer);
 
-    return startMainGame(shipsCoordinatesArr, PlayerOne);
+    return InitializeMainGame(shipsCoordinatesArr, PlayerOne);
   }
 }
 
