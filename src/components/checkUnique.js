@@ -1,13 +1,18 @@
 let checkArr = [];
 
-function CheckUnique(index) {
-  if (checkArr.indexOf(index) === -1) {
-    checkArr.push(index);
-    console.log("The number is unique");
-    return index;
+function CheckUnique(arr) {
+  let FilteredArr = checkArr.filter((e) => {
+    return e[0] === arr[0] && e[1] === arr[1];
+  });
+  if (FilteredArr.length === 0) {
+    checkArr.push(arr);
+    console.log("The coordinates are unique");
+    return arr;
   } else {
-    let index = Math.floor(100 * Math.random());
-    let elseVal = CheckUnique(index);
+    let row = Math.floor(10 * Math.random());
+    let column = Math.floor(10 * Math.random());
+    arr = [row, column];
+    let elseVal = CheckUnique(arr);
     console.log("The number was not unique and a new number is returned");
     return elseVal;
   }
