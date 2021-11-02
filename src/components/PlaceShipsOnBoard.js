@@ -21,7 +21,7 @@ function PlaceShipsOnBoard(name) {
   let dummyBoard = gameBoard(10, "DummyBoard");
   CreateGrid(10, "DummyBoard");
 
-  return dummyBoard;
+  return { dummyBoard, name };
 }
 
 export default PlaceShipsOnBoard;

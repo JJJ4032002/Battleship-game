@@ -3,19 +3,15 @@ import CheckUnique from "./checkUnique";
 import PlayersAttackShip from "./PlayersAttackShip";
 
 function getWinnerResult(element2, boards) {
-  let position1 = getUniqueNumber();
-  let element1 = document.querySelector(`div[data-box=Board1${position1}]`);
-  let dataShip1 = element1.getAttribute("data-ship");
-  let position2 = element2.id;
-  let dataShip2 = element2.getAttribute("data-ship");
+  let CoordinatesOneArr = getUniqueNumber();
+
+  let dataShip2Row = element2.getAttribute("data-row");
+  let dataShip2Column = element2.getAttribute("data-column");
+  let CoordinatesTwoArr = [dataShip2Row, dataShip2Column];
   let BothShipConditions = PlayersAttackShip(
     boards,
-    position1,
-    dataShip1,
-    position2,
-    dataShip2,
-    element1,
-    element2
+    CoordinatesOneArr,
+    CoordinatesTwoArr
   );
 
   let whoWon = checkWhoWon(BothShipConditions);
@@ -23,9 +19,11 @@ function getWinnerResult(element2, boards) {
 }
 
 function getUniqueNumber() {
-  let position1 = Math.floor(100 * Math.random());
-  position1 = CheckUnique(position1);
-  return position1;
+  let row = Math.floor(10 * Math.random());
+  let column = Math.floor(10 * Math.random());
+  let CoordinatesArr = [row, column];
+  CoordinatesArr = CheckUnique(CoordinatesArr);
+  return CoordinatesArr;
 }
 
 export default getWinnerResult;
