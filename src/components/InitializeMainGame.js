@@ -7,8 +7,8 @@ import Player from "../Player";
 function InitializeMainGame(arr, name) {
   let newBoard1 = gameBoard(10);
   let newBoard2 = gameBoard(10);
-  CreateGrid(10, "Board1");
-  CreateGrid(10, "Board2");
+  CreateGrid(10, "Board1", name);
+  CreateGrid(10, "Board2", "AI");
 
   PlaceAllShips(newBoard1, arr, "Board1");
 
@@ -26,11 +26,14 @@ function InitializeMainGame(arr, name) {
 
   let restBtnDiv = elementCreator("div", { className: "Restart" });
   let restBtn = elementCreator("button", { id: "RestartBtn" });
+  let winnerp = elementCreator("p", { id: "Winnerpara" });
   restBtn.textContent = "Restart";
   restBtnDiv.appendChild(restBtn);
   console.log(newBoard1.boardBlocks);
   console.log(newBoard2.boardBlocks);
-  document.querySelector(".OuterContainer").appendChild(restBtnDiv);
+  let outerContainer = document.querySelector(".OuterContainer");
+  outerContainer.appendChild(winnerp);
+  outerContainer.appendChild(restBtnDiv);
   let PlayerOne = Player(name, newBoard2);
   let PlayerTwo = Player("AI", newBoard1);
 

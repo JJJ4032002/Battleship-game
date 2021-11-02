@@ -106,6 +106,7 @@ let gameLoop = (function () {
         let whoWon = getWinnerResult(element2, boardsObj);
         console.log(whoWon);
         if (whoWon !== "No board has won the game yet") {
+          document.querySelector("#Winnerpara").textContent = whoWon;
           document.querySelector("#Board1").style["pointer-events"] = "none";
           document.querySelector("#Board2").style["pointer-events"] = "none";
         }

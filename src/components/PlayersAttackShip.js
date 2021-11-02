@@ -21,6 +21,8 @@ function PlayersAttackShip(boards, CoordinatesOneArr, CoordinatesTwoArr) {
   return {
     ifAllShipsB1: Board1AttackedObj.IfShipsSunk,
     ifAllShipsB2: Board2AttackedObj.IfShipsSunk,
+    PlayerOne: boards.PlayerOne.getName(),
+    PlayerTwo: boards.PlayerTwo.getName(),
   };
 }
 
