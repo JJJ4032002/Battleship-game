@@ -1,7 +1,8 @@
 const methodsObj = {
-  AttackBoard: function (row, column, shipLength) {
-    this.gameBoard.receiveAttack(row, column, shipLength);
-    return this.gameBoard.AllShipsSunk();
+  AttackBoard: function (row, column) {
+    let ShipHit = this.gameBoard.receiveAttack(row, column);
+    let IfShipsSunk = this.gameBoard.AllShipsSunk();
+    return { ShipHit, IfShipsSunk };
   },
   getName: function () {
     return this.name;

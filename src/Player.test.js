@@ -25,11 +25,15 @@ test("Get Player Name", () => {
 });
 
 test("Player Attacks ships", () => {
-  expect(Player1.AttackBoard(0, 2, 2)).toBe(
-    "All the ships have not been sunk yet"
-  );
+  expect(Player1.AttackBoard(0, 2)).toEqual({
+    ShipHit: "The ship has been hit and coordinates have been noted",
+    IfShipsSunk: "All the ships have not been sunk yet",
+  });
 });
 
 test("Player Wins", () => {
-  expect(Player1.AttackBoard(0, 3, 2)).toBe("All the ships are sunk");
+  expect(Player1.AttackBoard(0, 3)).toEqual({
+    ShipHit: "The ship has been hit and coordinates have been noted",
+    IfShipsSunk: "All the ships are sunk",
+  });
 });
