@@ -8,7 +8,7 @@ import StartGameAfterPlacement from "./components/StartGameAfterShipPlacement";
 import getWinnerResult from "./components/getWinnerResult";
 import RestartGame from "./components/RestartGame";
 let gameLoop = (function () {
-  let boards;
+  let boardsObj;
   let dummyBoard;
   let ShipCount = 1;
   let HoveredArr = [];
@@ -16,6 +16,7 @@ let gameLoop = (function () {
   let arrBlocksRed = [];
   let shipCoordinatesArr = [];
   let btnCheck = true;
+  let PlayerOne = "";
 
   function hasClass(elem, className) {
     return elem.classList.contains(className);
@@ -47,8 +48,9 @@ let gameLoop = (function () {
       if (hasClass(e.target, "submitButton")) {
         let subButton = document.querySelector(".submitButton");
         console.log(subButton);
-        dummyBoard = submitAndStart();
-        console.log(dummyBoard);
+        let dummyBoardObj = submitAndStart();
+        dummyBoard = dummyBoardObj.dummyBoard;
+        PlayerOne = dummyBoardObj.name;
       }
       if (e.target.parentNode.parentNode?.id === "DummyBoard") {
         let boxId = e.target;
@@ -81,7 +83,11 @@ let gameLoop = (function () {
       }
 
       if (e.target?.id === "subBtn") {
-        boards = StartGameAfterPlacement(ShipCount, shipCoordinatesArr);
+        boardsObj = StartGameAfterPlacement(
+          ShipCount,
+          shipCoordinatesArr,
+          PlayerOne
+        );
       }
       if (e.target?.id === "RestartBtn") {
         ShipCount = 1;
@@ -91,12 +97,14 @@ let gameLoop = (function () {
         shipCoordinatesArr = [];
         btnCheck = true;
         console.log("works");
-        dummyBoard = RestartGame();
+        let dummyBoardObj = RestartGame();
+        dummyBoard = dummyBoardObj.dummyBoard;
+        PlayerOne = dummyBoardObj.name;
       }
-      if (e.target.parentNode?.id === "Board2") {
+      if (e.target.parentNode.parentNode?.id === "Board2") {
         let element2 = e.target;
-        let whoWon = getWinnerResult(element2, boards);
-
+        let whoWon = getWinnerResult(element2, boardsObj);
+        console.log(whoWon);
         if (whoWon !== "No board has won the game yet") {
           document.querySelector("#Board1").style["pointer-events"] = "none";
           document.querySelector("#Board2").style["pointer-events"] = "none";
