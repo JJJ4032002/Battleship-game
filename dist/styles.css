@@ -3,6 +3,16 @@
   padding: 0;
   box-sizing: border-box;
 }
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+.OuterContainer {
+  height: 100%;
+}
 
 .navContainer {
   padding: 1em;
@@ -70,7 +80,7 @@ input:focus {
 .BlocksContainer {
   margin: 2em auto;
   width: 95%;
-  min-height: 50vh;
+  min-height: 60%;
   display: flex;
   flex-direction: column;
 }
@@ -79,8 +89,8 @@ input:focus {
   margin-top: 2em;
   border: 0.3em solid #40916c;
   display: flex;
-  flex-direction: column;
   flex: 1 1 auto;
+  flex-direction: column;
 }
 .Row {
   display: flex;
@@ -88,6 +98,9 @@ input:focus {
 }
 .box-items {
   flex: 1 1 auto;
+}
+#DummyBoard {
+  margin: 0 auto;
 }
 @media (min-width: 900px) {
   .navContainer h1 {
@@ -105,5 +118,12 @@ input:focus {
   }
   input {
     width: 40%;
+  }
+  #DummyBoard {
+    width: 50%;
+    margin: 0 auto;
+  }
+  .container {
+    flex: 0 1 auto;
   }
 }
