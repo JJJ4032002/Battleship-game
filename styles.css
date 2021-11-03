@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap");
+
+:root {
+  --font: Montserrat;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font);
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+.OuterContainer {
+  height: 100%;
+  text-align: center;
+}
+.parentContainer {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.navContainer {
+  padding: 1em;
+  background: #40916c;
+  color: white;
+  text-align: center;
+  margin-bottom: 1em;
+}
+.navContainer h1 {
+  font-size: 2.5rem;
+}
+#gameContainer {
+  margin: 2.5em 0;
+  text-align: center;
+}
+
+label {
+  font-size: 1.5rem;
+}
+input {
+  border: 2px solid transparent;
+  border-bottom: 3px solid black;
+  width: 50%;
+  margin: 0.7em 0;
+  text-align: center;
+  font-size: 1.2rem;
+  padding-bottom: 0.1em;
+}
+input:focus {
+  outline: none;
+}
+
+.BtnCont {
+  text-align: center;
+}
+
+#axisBtn {
+  padding: 0.5em 0.5em;
+}
+
+.submitButton,
+#axisBtn,
+#subBtn,
+#RestartBtn {
+  margin: 0.5em auto;
+  font-size: 1.2rem;
+  display: block;
+  padding: 0.4em 1em;
+  background-color: transparent;
+  border: 0.2em solid #40916c;
+  color: #40916c;
+  border-radius: 0.4em;
+  cursor: pointer;
+  transition: border 300ms ease, background-color 300ms ease, color 300ms ease;
+}
+
+.submitButton:hover,
+#axisBtn:hover,
+#subBtn:hover,
+#RestartBtn:hover {
+  background-color: #40916c;
+  border: 0.2em solid #40916c;
+  color: white;
+}
+
+.BlocksContainer {
+  margin: 2em auto;
+  width: 95%;
+  min-height: 65%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+#DummyBoardContainer {
+  min-height: 50%;
+}
+
+.container {
+  margin: 1em 0em;
+  border: 0.3em solid #40916c;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+.Row {
+  display: flex;
+  flex: 1 1 auto;
+}
+.box-items {
+  flex: 1 1 auto;
+}
+#DummyBoard {
+  margin: 0 auto;
+}
+@media (min-width: 900px) {
+  .navContainer h1 {
+    font-size: 3rem;
+  }
+  .BlocksContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 2em;
+    min-height: 50vh;
+  }
+  label {
+    font-size: 1.8rem;
+  }
+  input {
+    width: 40%;
+  }
+  #DummyBoard {
+    width: 50%;
+    margin: 0 auto;
+  }
+  .container {
+    flex: 1 1 auto;
+  }
+}
