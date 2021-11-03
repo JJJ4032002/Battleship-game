@@ -7,6 +7,7 @@ import validPlacementShip from "./components/validPlacementShip";
 import StartGameAfterPlacement from "./components/StartGameAfterShipPlacement";
 import getWinnerResult from "./components/getWinnerResult";
 import RestartGame from "./components/RestartGame";
+import FillArrCordinates from "./components/FillArrWithCoordinates";
 let gameLoop = (function () {
   let boardsObj;
   let dummyBoard;
@@ -17,6 +18,7 @@ let gameLoop = (function () {
   let shipCoordinatesArr = [];
   let btnCheck = true;
   let PlayerOne = "";
+  let checkArr = FillArrCordinates();
 
   function hasClass(elem, className) {
     return elem.classList.contains(className);
@@ -94,6 +96,7 @@ let gameLoop = (function () {
         HoveredArr = [];
         arrToAvoid = [];
         arrBlocksRed = [];
+        checkArr = FillArrCordinates();
         shipCoordinatesArr = [];
         btnCheck = true;
         console.log("works");
@@ -103,12 +106,12 @@ let gameLoop = (function () {
       }
       if (e.target.parentNode.parentNode?.id === "Board2") {
         let element2 = e.target;
-        let whoWon = getWinnerResult(element2, boardsObj);
+        let whoWon = getWinnerResult(element2, boardsObj, checkArr);
         console.log(whoWon);
         if (whoWon !== "No board has won the game yet") {
           document.querySelector("#Winnerpara").textContent = whoWon;
           document.querySelector("#Board1").style["pointer-events"] = "none";
-          document.querySelector("#Board2").style["pointer-events"] = "none";
+          // document.querySelector("#Board2").style["pointer-events"] = "none";
         }
       }
     },

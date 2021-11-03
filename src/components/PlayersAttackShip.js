@@ -6,7 +6,7 @@ function PlayersAttackShip(boards, CoordinatesOneArr, CoordinatesTwoArr) {
   let Board2AttackedObj = boards.PlayerOne.AttackBoard(row2, column2);
   let Board1AttackedObj = {};
   if (Board2AttackedObj.ShipHit !== "The ship has already been hit") {
-    Board1AttackedObj = boards.PlayerTwo.AttackBoard(row1, column1);
+    Board1AttackedObj = boards.PlayerTwo.AttackBoard(+row1, +column1);
 
     ColorChange(
       Board2AttackedObj.ShipHit,
@@ -23,6 +23,7 @@ function PlayersAttackShip(boards, CoordinatesOneArr, CoordinatesTwoArr) {
     ifAllShipsB2: Board2AttackedObj.IfShipsSunk,
     PlayerOne: boards.PlayerOne.getName(),
     PlayerTwo: boards.PlayerTwo.getName(),
+    UserHitCondition: Board2AttackedObj.ShipHit,
   };
 }
 

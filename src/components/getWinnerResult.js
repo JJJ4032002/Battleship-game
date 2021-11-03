@@ -1,9 +1,9 @@
 import checkWhoWon from "./checkWhoWon";
-import CheckUnique from "./checkUnique";
+
 import PlayersAttackShip from "./PlayersAttackShip";
 
-function getWinnerResult(element2, boards) {
-  let CoordinatesOneArr = getUniqueNumber();
+function getWinnerResult(element2, boards, checkArr) {
+  let CoordinatesOneArr = getUniqueNumber(checkArr);
 
   let dataShip2Row = element2.getAttribute("data-row");
   let dataShip2Column = element2.getAttribute("data-column");
@@ -13,17 +13,20 @@ function getWinnerResult(element2, boards) {
     CoordinatesOneArr,
     CoordinatesTwoArr
   );
-
+  if (BothShipConditions.UserHitCondition === "The ship has already been hit") {
+    checkArr.push(CoordinatesOneArr);
+  }
   let whoWon = checkWhoWon(BothShipConditions);
   return whoWon;
 }
 
-function getUniqueNumber() {
-  let row = Math.floor(10 * Math.random());
-  let column = Math.floor(10 * Math.random());
-  let CoordinatesArr = [row, column];
-  CoordinatesArr = CheckUnique(CoordinatesArr);
-  return CoordinatesArr;
+function getUniqueNumber(checkArr) {
+  let Coordinates = Math.floor(checkArr.length * Math.random());
+  Coordinates = checkArr[Coordinates];
+  let index = checkArr.indexOf(Coordinates);
+  checkArr.splice(index, 1);
+  console.log(checkArr);
+  return Coordinates;
 }
 
 export default getWinnerResult;
