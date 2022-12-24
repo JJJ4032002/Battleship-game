@@ -1,16 +1,11 @@
-import CreateGrid from "./CreateGrid";
-import PlaceAtPosition from "./PlaceAtPosition";
 import { ship } from "./shipFactory";
 
 const methodObj = {
   placeShip: function (row, column, shipLength, axisDecider) {
     this.NoOfShips++;
-
     let i = 0;
-
     while (i < shipLength) {
       this.boardBlocks[row][column] = `${shipLength}`;
-
       if (axisDecider) {
         column++;
       } else {
@@ -18,7 +13,6 @@ const methodObj = {
       }
       i++;
     }
-
     let newShip = ship(shipLength);
     this.shipsArr.push(newShip);
   },
@@ -36,6 +30,8 @@ const methodObj = {
         return Number(shipLength) === params.ShipLength;
       }
       let ShipIndex = this.shipsArr.findIndex(FindShip);
+      console.log();
+      console.log(ShipIndex);
       let thatShip = this.shipsArr[ShipIndex];
 
       thatShip.hit();
