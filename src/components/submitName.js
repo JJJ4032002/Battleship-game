@@ -1,6 +1,6 @@
 import PlaceShipsOnBoard from "./PlaceShipsOnBoard";
 
-function submitAndStart() {
+function submitName() {
   let Input = document.querySelector("#name");
   let name = Input.value;
   if (name === "") {
@@ -13,4 +13,4 @@ function submitAndStart() {
     return returnBoard;
   }
 }
-export default submitAndStart;
+export default submitName;

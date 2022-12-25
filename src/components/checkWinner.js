@@ -1,4 +1,4 @@
-function checkWhoWon(props) {
+function checkWinner(props) {
   if (props.ifAllShipsB1 === "All the ships are sunk") {
     return `Board1 has lost the game And ${props.PlayerTwo} is the winner`;
   } else if (
@@ -13,4 +13,4 @@ function checkWhoWon(props) {
   }
 }
 
-export default checkWhoWon;
+export default checkWinner;

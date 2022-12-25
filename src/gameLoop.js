@@ -1,24 +1,23 @@
-import submitAndStart from "./components/submitAndStart";
-
+import submitName from "./components/submitName";
 import PreviewShipsOnHover from "./components/PreviewShipsOnHover";
-import changeArrBackgroundColor from "./components/changeArrBackgroundColor";
+import changeElementBackgroundColor from "./components/changeElementBackgroundColor";
 import Colors from "./components/Colors";
 import validPlacementShip from "./components/validPlacementShip";
-import StartGameAfterPlacement from "./components/StartGameAfterShipPlacement";
-import getWinnerResult from "./components/getWinnerResult";
+import AllShipsPlacedValidation from "./components/AllShipsPlacedValidation";
+import getWinner from "./components/getWinner";
 import RestartGame from "./components/RestartGame";
-import FillArrCordinates from "./components/FillArrWithCoordinates";
+import FillArrayWithCoordinates from "./components/FillArrayWithCoordinates";
 let gameLoop = (function () {
   let boardsObj;
   let dummyBoard;
   let ShipCount = 1;
-  let HoveredArr = [];
-  let arrToAvoid = [];
-  let arrBlocksRed = [];
+  let GreenElementsArray = [];
+  let ElementsToAvoidArray = [];
+  let RedElementsArray = [];
   let shipCoordinatesArr = [];
   let btnCheck = true;
   let PlayerOne = "";
-  let checkArr = FillArrCordinates();
+  let checkArr = FillArrayWithCoordinates();
 
   function hasClass(elem, className) {
     return elem.classList.contains(className);
@@ -27,17 +26,16 @@ let gameLoop = (function () {
   // Listening to mouseover events
   document.addEventListener("mouseover", function (e) {
     if (e.target.parentNode.parentNode?.id === "DummyBoard") {
-      changeArrBackgroundColor(HoveredArr, Colors.white);
-
-      changeArrBackgroundColor(arrToAvoid, Colors.green);
-      // Emptied the array to add only those elements in "arrToAvoid" that had Back-color green.
-      HoveredArr = [];
-      arrBlocksRed = [];
+      changeElementBackgroundColor(GreenElementsArray, Colors.white);
+      changeElementBackgroundColor(ElementsToAvoidArray, Colors.green);
+      // Emptied the array to add only those elements in "ElementsToAvoidArray" that had Back-color green.
+      GreenElementsArray = [];
+      RedElementsArray = [];
       PreviewShipsOnHover(
         e.target,
         ShipCount,
-        HoveredArr,
-        arrBlocksRed,
+        GreenElementsArray,
+        RedElementsArray,
         btnCheck
       );
     }
@@ -50,23 +48,22 @@ let gameLoop = (function () {
       if (hasClass(e.target, "submitButton")) {
         let subButton = document.querySelector(".submitButton");
         console.log(subButton);
-        let dummyBoardObj = submitAndStart();
+        let dummyBoardObj = submitName();
         dummyBoard = dummyBoardObj.dummyBoard;
         PlayerOne = dummyBoardObj.name;
       }
       if (e.target.parentNode.parentNode?.id === "DummyBoard") {
         let boxId = e.target;
-
         let changeValObj = validPlacementShip({
           element: boxId,
           length: ShipCount,
-          ArrToBeCopied: arrToAvoid,
+          ArrToBeCopied: ElementsToAvoidArray,
           shipCoordinatesArr: shipCoordinatesArr,
           board: dummyBoard,
           axisDecider: btnCheck,
         });
         ShipCount = changeValObj.length;
-        arrToAvoid = changeValObj.ArrToBeCopied;
+        ElementsToAvoidArray = changeValObj.ArrToBeCopied;
         shipCoordinatesArr = changeValObj.shipCoordinatesArr;
 
         if (ShipCount > 5) {
@@ -85,7 +82,7 @@ let gameLoop = (function () {
       }
 
       if (e.target?.id === "subBtn") {
-        boardsObj = StartGameAfterPlacement(
+        boardsObj = AllShipsPlacedValidation(
           ShipCount,
           shipCoordinatesArr,
           PlayerOne
@@ -93,20 +90,20 @@ let gameLoop = (function () {
       }
       if (e.target?.id === "RestartBtn") {
         ShipCount = 1;
-        HoveredArr = [];
-        arrToAvoid = [];
-        arrBlocksRed = [];
-        checkArr = FillArrCordinates();
+        GreenElementsArray = [];
+        ElementsToAvoidArray = [];
+        RedElementsArray = [];
+        checkArr = FillArrayWithCoordinates();
         shipCoordinatesArr = [];
         btnCheck = true;
         console.log("works");
-        let dummyBoardObj = RestartGame();
+        let dummyBoardObj = RestartGame(dummyBoardObj.name);
         dummyBoard = dummyBoardObj.dummyBoard;
         PlayerOne = dummyBoardObj.name;
       }
       if (e.target.parentNode.parentNode?.id === "Board2") {
         let element2 = e.target;
-        let whoWon = getWinnerResult(element2, boardsObj, checkArr);
+        let whoWon = getWinner(element2, boardsObj, checkArr);
         console.log(whoWon);
         if (whoWon !== "No board has won the game yet") {
           document.querySelector("#Winnerpara").textContent = whoWon;

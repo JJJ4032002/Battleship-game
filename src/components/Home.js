@@ -1,7 +1,7 @@
 import elementCreator from "./elementCreator";
 let mainDiv = document.querySelector(".OuterContainer");
 let ClickButton = null;
-function StartGame() {
+function Home() {
   let GameDiv = elementCreator("div", { id: "gameContainer" });
   GameDiv.innerHTML = `<label for="Name">Enter your Name</label>
     <br>
@@ -12,4 +12,4 @@ function StartGame() {
   mainDiv.appendChild(GameDiv);
   ClickButton = document.querySelector(".submitButton");
 }
-export default StartGame;
+export default Home;

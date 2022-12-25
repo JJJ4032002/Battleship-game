@@ -1,7 +1,5 @@
-import gameLoop from "./gameLoop";
-import CreateNav from "./components/createNav";
-import StartGame from "./components/startGame";
+import CreateNavbar from "./components/createNavbar";
+import Home from "./components/Home";
 
-CreateNav();
-
-StartGame();
+CreateNavbar();
+Home();

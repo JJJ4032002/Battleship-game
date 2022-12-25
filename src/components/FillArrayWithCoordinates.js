@@ -1,4 +1,4 @@
-function FillArrCordinates() {
+function FillArrayWithCoordinates() {
   let arr = [];
   for (let i = 0; i < 100; i++) {
     let coordinate = "";
@@ -12,4 +12,4 @@ function FillArrCordinates() {
   return arr;
 }
 
-export default FillArrCordinates;
+export default FillArrayWithCoordinates;

@@ -1,6 +1,6 @@
-import InitializeMainGame from "./InitializeMainGame";
+import InitializeGame from "./InitializeGame";
 
-function StartGameAfterPlacement(length, shipsCoordinatesArr, PlayerOne) {
+function AllShipsPlacedValidation(length, shipsCoordinatesArr, PlayerOne) {
   if (length < 6) {
     alert("Please place all the ships");
   } else {
@@ -8,9 +8,8 @@ function StartGameAfterPlacement(length, shipsCoordinatesArr, PlayerOne) {
     let gridContainer = document.querySelector(".BlocksContainer");
     btnCont.parentElement.removeChild(btnCont);
     gridContainer.parentElement.removeChild(gridContainer);
-
-    return InitializeMainGame(shipsCoordinatesArr, PlayerOne);
+    return InitializeGame(shipsCoordinatesArr, PlayerOne);
   }
 }
 
-export default StartGameAfterPlacement;
+export default AllShipsPlacedValidation;

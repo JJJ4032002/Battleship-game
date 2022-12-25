@@ -1,8 +1,8 @@
-import checkWhoWon from "./checkWhoWon";
+import checkWinner from "./checkWinner";
 
 import PlayersAttackShip from "./PlayersAttackShip";
 
-function getWinnerResult(element2, boards, checkArr) {
+function getWinner(element2, boards, checkArr) {
   let CoordinatesOneArr = getUniqueNumber(checkArr);
 
   let dataShip2Row = element2.getAttribute("data-row");
@@ -16,7 +16,7 @@ function getWinnerResult(element2, boards, checkArr) {
   if (BothShipConditions.UserHitCondition === "The ship has already been hit") {
     checkArr.push(CoordinatesOneArr);
   }
-  let whoWon = checkWhoWon(BothShipConditions);
+  let whoWon = checkWinner(BothShipConditions);
   return whoWon;
 }
 
@@ -29,4 +29,4 @@ function getUniqueNumber(checkArr) {
   return Coordinates;
 }
 
-export default getWinnerResult;
+export default getWinner;

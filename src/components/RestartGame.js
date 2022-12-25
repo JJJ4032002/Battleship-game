@@ -1,5 +1,5 @@
 import PlaceShipsOnBoard from "./PlaceShipsOnBoard";
-function RestartGame() {
+function RestartGame(name) {
   let outerContainer = document.querySelector(".OuterContainer");
   let BlocksContainer = document.querySelector(".BlocksContainer");
   let WinnerPara = document.querySelector("#Winnerpara");
@@ -7,7 +7,7 @@ function RestartGame() {
   outerContainer.removeChild(BlocksContainer);
   outerContainer.removeChild(restartBtnContainer);
   outerContainer.removeChild(WinnerPara);
-  let dummyBoard = PlaceShipsOnBoard("Rohan");
+  let dummyBoard = PlaceShipsOnBoard(name);
   return dummyBoard;
 }
 

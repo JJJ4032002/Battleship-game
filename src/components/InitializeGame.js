@@ -4,7 +4,7 @@ import elementCreator from "./elementCreator";
 import CreateGrid from "../CreateGrid";
 import Player from "../Player";
 
-function InitializeMainGame(arr, name) {
+function InitializeGame(arr, name) {
   let newBoard1 = gameBoard(10);
   let newBoard2 = gameBoard(10);
   CreateGrid(10, "Board1", name);
@@ -40,4 +40,4 @@ function InitializeMainGame(arr, name) {
   return { newBoard1, newBoard2, PlayerOne, PlayerTwo };
 }
 
-export default InitializeMainGame;
+export default InitializeGame;

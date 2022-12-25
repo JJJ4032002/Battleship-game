@@ -1,42 +1,46 @@
 import Colors from "./Colors";
-function PreviewShipsOnHover(e, shipCount, arr, arrRed, btn) {
+function PreviewShipsOnHover(
+  currentElement,
+  shipLength,
+  GreenElementsArray,
+  RedElementsArray,
+  Direction
+) {
+  //incrementors
   let i = 0;
-  let j = 0;
-
-  let row = e.getAttribute("data-row");
-  let column = e.getAttribute("data-column");
+  let row = currentElement.getAttribute("data-row");
+  let column = currentElement.getAttribute("data-column");
 
   //Calculating if ship can be placed in the row. The total should always be lesser or equal to endVal to be placed.
-
-  while (j < shipCount - 1) {
-    if (btn) {
-      column++;
-    } else {
-      row++;
-    }
-    j++;
+  //Getting total to compare later
+  if (Direction) {
+    column = +column + +shipLength - 1;
+  } else {
+    row = +row + +shipLength - 1;
   }
 
-  while (i < shipCount) {
-    if ((btn && column <= 9) || (!btn && row <= 9)) {
-      e.style["background-color"] = Colors.green;
+  //Looping over the elements as to create an effect if the ship is being higlighted on hover
+  while (i < shipLength) {
+    //If ship fits on the current row or column Color it with green else color it with red.
+    if ((Direction && column <= 9) || (!Direction && row <= 9)) {
+      console.log(column);
+      currentElement.style["background-color"] = Colors.green;
     } else {
-      e.style["background-color"] = Colors.red;
-      arrRed.push(e);
+      currentElement.style["background-color"] = Colors.red;
+      RedElementsArray.push(currentElement);
     }
-
-    arr.push(e);
-    if (btn && e.getAttribute("data-column") < 9) {
-      e = e.nextElementSibling;
-    } else if (!btn && e.getAttribute("data-row") < 9) {
-      let rowColor = e.getAttribute("data-row");
-      let columnColor = e.getAttribute("data-column");
-
-      rowColor++;
-      let nextEl = document.body.querySelector(
-        `[data-Coordinates = "${rowColor}${columnColor}"]`
+    //Green colored element
+    GreenElementsArray.push(currentElement);
+    if (Direction && currentElement.getAttribute("data-column") < 9) {
+      currentElement = currentElement.nextElementSibling;
+    } else if (!Direction && currentElement.getAttribute("data-row") < 9) {
+      let row = currentElement.getAttribute("data-row");
+      let column = currentElement.getAttribute("data-column");
+      row++;
+      let nextElement = document.body.querySelector(
+        `[data-Coordinates = "${row}${column}"]`
       );
-      e = nextEl;
+      currentElement = nextElement;
     } else {
       console.log("Do not update");
     }
