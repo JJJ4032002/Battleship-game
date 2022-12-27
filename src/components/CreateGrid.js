@@ -14,8 +14,6 @@ function CreateGrid(RowsColumns, BoardName, name = "default") {
     nameHeading.textContent = name;
     ParentContainer.appendChild(nameHeading);
   }
-  ParentContainer.style.width = "100%";
-  Container.style.width = "100%";
   ParentContainer.appendChild(Container);
   for (let i = 0; i < RowsColumns; i++) {
     const IndDiv = document.createElement("div");
@@ -28,7 +26,7 @@ function CreateGrid(RowsColumns, BoardName, name = "default") {
       indiBlock.setAttribute("data-column", j);
       indiBlock.setAttribute("data-coordinates", `${i}${j}`);
       indiBlock.setAttribute("id", `${BoardName}${i}${j}`);
-      indiBlock.style.border = `2px solid ${Colors.darkGreen}`;
+      indiBlock.style.border = `2px solid ${Colors.white}`;
       IndDiv.appendChild(indiBlock);
     }
 

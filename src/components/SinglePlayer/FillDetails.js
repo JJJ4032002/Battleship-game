@@ -18,23 +18,20 @@ function FillDetails() {
     placeholder: "Please enter your name",
     value: "",
   });
+  let errorSpan = ElementCreator("span", {
+    className: "ErrorText",
+    id: "EmptyName",
+    textContent: "Player name cannot be empty!",
+  });
   let submitButton = ElementCreator("Button", {
     className: "submitButton",
-    type: Button,
+    id: "SinglePlayerDetailsButton",
+    type: "Button",
     textContent: "Submit",
   });
-  form.append(labelPlayer, inputPlayer, submitButton);
+  form.append(labelPlayer, inputPlayer, errorSpan, submitButton);
   SinglePlayerDiv.append(form);
   gameDiv.appendChild(SinglePlayerDiv);
 }
 
-function DetailsValidation() {
-  let SinglePlayerName = document.querySelector("#singlePlayerName").value;
-  if (SinglePlayerName === "") {
-    alert("Player Name cannot be empty");
-    return "No Name";
-  }
-  return SinglePlayerName;
-}
-
-export { FillDetails, DetailsValidation };
+export default FillDetails;

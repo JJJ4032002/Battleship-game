@@ -20,13 +20,9 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+  color: white;
 }
 
-.parentContainer {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-}
 .modal {
   position: fixed;
   top: 0;
@@ -112,7 +108,11 @@ input:focus {
 }
 
 .parentContainer {
-  flex: 1;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 .SinglePlayer {
   display: flex;
@@ -125,10 +125,10 @@ input:focus {
 
 .container {
   margin: 1em 0em;
-  border: 0.3em solid #40916c;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
+  width: 90%;
 }
 .Row {
   display: flex;
@@ -157,17 +157,21 @@ form {
   flex-direction: column;
   align-items: center;
 }
+
+.ErrorText {
+  display: none;
+  color: red;
+}
+
+.GridContainer {
+  display: flex;
+  flex: 1;
+}
 @media (min-width: 900px) {
   .navContainer h1 {
     font-size: 3rem;
   }
-  .BlocksContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    gap: 2em;
-    min-height: 50vh;
-  }
+
   label {
     font-size: 1.8rem;
   }
@@ -182,6 +186,7 @@ form {
     width: 25%;
   }
   .container {
+    width: 50%;
     flex: 1 1 auto;
   }
 }

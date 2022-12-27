@@ -1,4 +1,4 @@
-import Colors from "./components/Colors";
+import Colors from "../Colors";
 
 function PlaceAtPosition(
   row,
@@ -7,21 +7,15 @@ function PlaceAtPosition(
   axisDecider,
   BoardId = "DummyBoard"
 ) {
-  let shipCount = 0;
+  let i = 0;
   let arrToAvoid = [];
-  while (shipCount < shipLength) {
-    console.log(row, column, BoardId);
-    console.log(typeof row, typeof column);
+  while (i < shipLength) {
     let elementToBeHiglighted = document.querySelector(
       `#${BoardId}${row}${column}`
     );
-
     arrToAvoid = [...arrToAvoid, elementToBeHiglighted];
-    if (BoardId !== "Board2") {
-      elementToBeHiglighted.style["background-color"] = Colors.green;
-
-      console.log("done");
-      console.log(elementToBeHiglighted);
+    if (BoardId !== "EnemyBoard") {
+      elementToBeHiglighted.style["background-color"] = Colors.white;
     }
 
     if (axisDecider) {
@@ -29,7 +23,7 @@ function PlaceAtPosition(
     } else {
       row++;
     }
-    shipCount++;
+    i++;
   }
   return arrToAvoid;
 }
